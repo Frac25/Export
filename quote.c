@@ -18,12 +18,15 @@ int	exit_quote(int i)
 int	check_quote(char *c)
 {
 	int	i;
+	int	n;
 
 	i = 0;
+	n = 0;
 	while(c[i])
 	{
 		if(c[i] == 34) //double
 		{
+			n++;
 			i++;
 			while(c[i] && c[i] != 34)
 				i++;
@@ -32,6 +35,7 @@ int	check_quote(char *c)
 		}
 		if(c[i] == 39) //simple,
 		{
+			n++;
 			i++;
 			while(c[i] && c[i] != 39)
 				i++;
@@ -40,12 +44,16 @@ int	check_quote(char *c)
 		}
 		i++;
 	}
-	printf("toutes les quotes sont fermees\n");
-	sep_quote(c);
+	if(n > 0)
+	{
+		printf("toutes les quotes sont fermees\n");
+		return(1);
+	}
+	printf("pas de quotes\n");
 	return(0);
 }
 
-int	sep_quote(char *c)
+t_nod	*sep_quote(char *c)
 {
 	int		i;
 	int		l;
@@ -64,8 +72,8 @@ int	sep_quote(char *c)
 				i++;
 				l++;
 			}
-			n = add_nod(d_quote, l, c, i, n);
-			var_env(n);
+			n = add_nod(d_q, l, c, i, n);
+			sep_ve(n);
 			i++;
 		}
 		if(c[i] == 39) //simple
@@ -77,7 +85,7 @@ int	sep_quote(char *c)
 				i++;
 				l++;
 			}
-			n = add_nod(txt, l, c, i, n);
+			n = add_nod(s_q, l, c, i, n);
 			i++;
 		}
 		if(c[i] && c[i] != 34 && c[i] != 39) //txt
@@ -89,51 +97,76 @@ int	sep_quote(char *c)
 				l++;
 			}
 			n = add_nod(txt, l, c, i, n);
+			sep_ve(n);
 		}
 	}
-	print_nod(n);
-	return(0);
+
+	close_node(n);
+//	print_nod(n);
+	print_nod_l(n,0);
+	printf("fin de quote!\n");
+	//a ajouter : nsup->detail = n
+	return (n);
 }
 
-void	init_nod(t_nod *n)
+char *format_txt(char *c)
 {
-	n->index = 0;
-	n->level = 0;
-}
-
-t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod)
-{
-	t_nod	*n;
-	int		j;
-
-	n = malloc(sizeof(t_nod));
-	if (last_nod == NULL)
-		init_nod(n);
-	n->index++;
-	n->size = l;
-	n->typ = typ;
-	n->next = last_nod;
-	n->c = malloc(sizeof(char) * n->size + 1);
-	n->c[n->size] = '\0';
-	j = 1;
-	while(j <= n->size)
+	int cq;
+	int i;
+	t_nod *n;
+	char *c_new = NULL;
+	printf("passe format_txt\n");
+	cq = check_quote(c);
+	printf("cq = %d\n", cq);
+	if (cq == -1)
+		exit(EXIT_FAILURE);
+	if (cq == 0)
+		return (c);
+	if (cq == 1)
 	{
-		n->c[n->size - j] = c[i - j];
-		j++;
+		print_nod_l(sep_quote(c),0);
+		printf("milieux de format\n");
+		printf("nod_txt = %s", nod_txt(sep_quote(c), NULL));
+
+
+
+		return (c_new);
 	}
-	return(n);
+
+	perror("erreur format.txt");
+	exit(EXIT_FAILURE);
 }
 
-void	print_nod(t_nod *n)
+char	*nod_txt(t_nod *n, char *c)
 {
 	int		i;
 	t_nod	*n_tmp;
 
-	n_tmp = n;
+	printf("passe nod_txt\n");
+
+	n_tmp = n->prev;
 	i = 0;
-	while(n_tmp)
+	c = NULL;
+
+	printf("n->nod_size = %d\n", n->nod_size);
+	while(i < n->nod_size)
 	{
-		printf("%s\n", n_tmp->c);
-		n_tmp = n_tmp->next;
+		if(n_tmp->detail == NULL)
+		{
+			printf("c = %s\n", c);
+			printf("n_tmp->c = %s\n", n_tmp->c);
+			c = ft_strjoin2(c, n_tmp->c); // il faudra free c dans join
+			printf("c2 = %s\n", c);
+		}
+		else
+			nod_txt(n_tmp->detail, NULL);
+
+		n_tmp = n_tmp->prev;
+		i++;
 	}
+	printf("sort nod_txt\n");
+	printf("c3 = %s\n", c);
+	return(c);
 }
+
+// ./export "\"test\""

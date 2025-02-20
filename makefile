@@ -3,10 +3,14 @@ NAME = export
 PROG =	export\
 		ft_split\
 		insert\
+		lib\
+		node\
+		print_nod\
 		quote\
+		utils_2\
+		utils_is\
 		utils\
 		var_env\
-
 
 SRC = $(addsuffix .c, $(PROG))
 

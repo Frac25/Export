@@ -28,17 +28,18 @@ int	close_node(t_nod *n)
 	n_tmp->next  = n;
 	n_tmp->next->prev = n_tmp;
 	n->nod_size = i;
+	return(0);
 }
 
 /**
  * @brief crer un nod d'une liste chainee
- * 
+ *
  * @param typ : type de contenu de la chaine de caractere c
  * @param l : nbr de caractere a extraire
  * @param c : chaine d originne
  * @param i : position du dernier charactere a copier dans la chaine d originne
  * @param last_nod : nod precedant, a chainer
- * @return t_nod* 
+ * @return t_nod*
  */
 t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod)
 {

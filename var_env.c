@@ -7,20 +7,17 @@ int	sep_ve(t_nod *n)
 	t_nod	*n_d;
 
 	n_d = NULL;
-//	printf("passe 0\n");
 	i = 0;
 	while(n->c[i])
 	{
 		if(n->c[i] == 36) //dollars
 		{
 			i++;
-//			printf("passe10 n->c[i] = %c\n", n->c[i]);
 			if (ft_isnum(n->c[i]) == 1)
 				return(10);
 			l = 0;
-			while(n->c[i] && ft_isalphanum_c(n->c[i]) == 1)
+			while(n->c[i] && is_env_value_c(n->c[i]) == 1)
 			{
-//				printf("passe20\n");
 				i++;
 				l++;
 			}
@@ -30,7 +27,6 @@ int	sep_ve(t_nod *n)
 			}
 			replace_ve(n_d);
 //			printf("est une variable d env, n->c[i] = %c et l = %d\n", n->c[i], l);
-//			print_nod_d(n_d);
 		}
 		else
 		{
@@ -45,7 +41,6 @@ int	sep_ve(t_nod *n)
 				n_d = add_nod(txt, l, n->c, i, n_d);
 			}
 //			printf("pas une variable d env, n->c[i] = %c et l = %d\n", n->c[i], l);
-//			print_nod_d(n_d);
 		}
 	}
 	close_node(n_d);
@@ -57,12 +52,13 @@ int	sep_ve(t_nod *n)
 
 int	replace_ve(t_nod *n)
 {
-	char *ve = "SYLVAINDUBOIS";
+	char *ve = "SYLVAIN";
 
 	if(n->typ != v_e)
 		printf("erreur : pas une v-e");
 	free(n->c);
-	n->c = ve;
+	n->c = ft_strdup(ve);
+	return(0);
 }
 
 

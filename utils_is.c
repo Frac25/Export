@@ -1,6 +1,13 @@
 #include "export.h"
 
-int	ft_isalphanum1(char *c)
+/**
+ * @brief format des noms de variablke d environnement : maj , min, _ et num sauf pour la premiere lettre.
+ *
+ * @param c
+ * @return int
+ * @result 1 si ok, sinon 0
+ */
+int	is_env_name(char *c)
 {
 	int	i;
 	int	ok;
@@ -26,7 +33,14 @@ int	ft_isalphanum1(char *c)
 	return (1);
 }
 
-int	ft_isalphanum_c(char c)
+/**
+ * @brief format des valeurs des variables d environnement :  maj , min, num, '_' '.' ',' ':'
+ *
+ * @param c
+ * @return int
+ * @result 1 si ok, sinon 0
+ */
+int	is_env_value_c(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return(1);
@@ -34,11 +48,48 @@ int	ft_isalphanum_c(char c)
 		return(1);
 	else if (c >= '0' && c <= '9')
 		return(1);
-	else if (c == '_')
+	else if (c == '_' || c == '.' || c == ',' || c == ':')
 		return(1);
 	return (0);
 }
 
+/**
+ * @brief format des valeurs des variables d environnement :  maj , min, num, '_' '.' ',' ':'
+ *
+ * @param c
+ * @return int
+ * @result 1 si ok, sinon 0
+ */
+int	is_env_value(char *c)
+{
+	int i;
+	int ok;
+
+	i = 0;
+	while (c[i])
+	{
+		ok = 0;
+		if (c[i] >= 'A' && c[i] <= 'Z')
+			ok++;
+		else if (c[i] >= 'a' && c[i] <= 'z')
+			ok++;
+		else if (c[i] >= '0' && c[i] <= '9')
+			ok++;
+		else if (c[i] == '_' || c[i] == '.' || c[i] == ',' || c[i] == ':')
+			ok++;
+		if(ok == 0)
+			return(0);
+		i++;
+	}
+	return (1);
+}
+
+/**
+ * @brief revoie 1 si numerique
+ *
+ * @param c
+ * @return int
+ */
 int	ft_isnum(char c)
 {
 	if (c >= '0' && c <= '9')

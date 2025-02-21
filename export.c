@@ -2,99 +2,84 @@
 
 int	ft_arg_check(char *c)
 {
-	if (ft_isalphanum1(c) == 0) //ko a corriger
-		return(-1);
-	if (ft_nb_str(c, "'") % 2 == 1)//simple quote//pas complet
-		return(-1);
-	//gerer les double quote : a faire --> oui..
+	char	*c2;
+	c2 = format_txt(c);
+
 	return(1);
 }
 
-int	ft_exp_check(char *c)
+int	exportable(char *c)
 {
 	int		i;
 	char	**arg;
+	int		n;
+	char	*c_tmp;
 
 	arg = NULL;
-	if(ft_search_cins(c, '=') == -1)
+	n = ft_search_cins(c, '='); //si plusieurs =
+	if(n == -1)
 	{
-//		printf("cas pas de '=' \n");
-		if (ft_isalphanum1(c) == 0)
+		printf("cas pas de '=' \n");
+		if (is_env_name(c) == 0)
 			return(-1);
 		return(2);
 	}
 	else
 	{
-		if (c[ft_search_cins(c, '=') - 1] == ' ' || c[ft_search_cins(c, '=') + 1] == ' ')
+		if (c[n] == ' ' || c[n + 1] == ' ')
 			return(-1); //utile?
-		arg = ft_split(c, '=');
-		if (ft_isalphanum1(arg[0]) == 0)
+		arg = ft_split(c, '='); //a tester : si plusieurs =
+		if (is_env_name(arg[0]) == 0)
 			return(-1);
-		i = 0;
-		while(arg[i])
-		{
-			if(ft_arg_check(arg[i]) == -1)
-				return(-1);
-			i++;
-		}
+
+		c_tmp = format_txt(arg[1]);
+		printf("c_tmp = %s\n", c_tmp);
+		if(is_env_value(c_tmp) == 0)
+			{printf("pb env value"); return(-1);}
 	}
 //	printf("arg de export sans erreur\n");
 	free(arg);
 	return(1);
 }
 
+int check_argc(int argc, char **env)
+{
+	if(argc <= 0)
+		return(-1);
+	if(argc == 1)
+	{
+		print_2c(env); //verifier le retour?
+		exit(EXIT_SUCCESS);
+	}
+	if(argc == 2)
+	{
+		return (0);
+	}
+	return(-1);
+}
 int main(int argc, char **argv, char **env)
 {
 	int i;
-	char *new_arg;
+	char *arg1;
 
-	if(argc < 1)
-		return(-1);
-
-	if(argc == 1)
-	{
-		print_2c(env);
-		return (0);
-	}
-	if(argc > 2)
-	{
-		perror("argv >= 2");
-		return (0);
-	}
-
-	new_arg = format_txt(argv[1]);
-	if(new_arg == NULL)
+	if(check_argc(argc, env) != 0)
+		return(check_argc(argc, env));
+	arg1 = format_txt(argv[1]);
+	if(arg1 == NULL)
 		exit(EXIT_FAILURE);
-//	new_arg = argv[1];
-
-
-	i = 0;
-	i = ft_exp_check(new_arg);
+	i = exportable(arg1);
 	if (i == -1)
-	{
-//		printf("erreur\n");
 		return(-1);
-	}
 	else if (i == 2)
-	{
-		new_arg = ft_strjoin(new_arg, "=\'\'");
-//		printf("new_arg = %s\n", new_arg);
-//		argv[1] = new_arg;
-//		printf("argv[1] = %s\n", argv[1]);
-	}
-
-	i = arg_exist(env, new_arg);
+		arg1 = ft_strjoin(arg1, "=\'\'");
+	i = arg_exist(env, arg1);
 	if(i >= 0)
-	{
-//		printf("arg exist, env[%d] = %s\n", i, env[i]);
-		env[i] = new_arg;
-//		print_2c(env);
-	}
+		env[i] = arg1; //leaks??
 	else
-	{
-//		printf("arg exist pas\n");
-		env = ft_strjoin_21(env, new_arg);
-		print_2c(env);
-	}
+		env = ft_strjoin_21(env, arg1);
+	print_2c(env);
 	return (0);
 }
+
+
+//		printf("arg exist, env[%d] est : %s\n", i, env[i]);

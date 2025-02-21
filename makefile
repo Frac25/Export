@@ -4,6 +4,7 @@ PROG =	export\
 		ft_split\
 		insert\
 		lib\
+		lib_m\
 		node\
 		print_nod\
 		quote\

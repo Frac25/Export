@@ -31,7 +31,7 @@ typedef struct nod
 
 //export
 int		ft_arg_check(char *c);
-int		ft_exp_check(char *c);
+int		exportable(char *c);
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -39,12 +39,16 @@ char	**ft_split(char const *s, char c);
 //insert
 char	**ft_strjoin_21(char **s1, char *s2);
 int		arg_exist(char **s1, char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
 
 //lib
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strnstr(const char *str, const char *s, size_t len);
 size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+
+//lib_m
 char	*ft_strjoin2(char *s1, char *s2);//pas du std
 
 //node
@@ -78,8 +82,9 @@ char	**ft_copy_2(char **s1);
 void	free_2(char **c);
 
 //utils_is
-int		ft_isalphanum1(char *c);
-int		ft_isalphanum_c(char c);
+int		is_env_name(char *c);
+int		is_env_value(char *c);
+int		is_env_value_c(char c);
 int		ft_isnum(char c);
 
 //sep_ve

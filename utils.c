@@ -1,5 +1,13 @@
 #include "export.h"
 
+/**
+ * @brief recherche la premiere position d'un caractere dans une chaine
+ *
+ * @param s
+ * @param c
+ * @return int
+ * @result si pas trouve ou si c ou s est nul : -1, sinon : position de c dans s
+ */
 int	ft_search_cins(char *s, char c)
 {
 	int	i;

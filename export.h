@@ -28,6 +28,8 @@ typedef struct nod
 	t_typ typ;
 	int level;
 	int index;
+	int eq;//equal;
+	int i_e;//is_env;
 }	t_nod;
 
 //export
@@ -38,6 +40,8 @@ int		check_argc(int argc, char **env);
 
 char	*format_txt(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
+int	is_env_ll(t_nod *n);
+int	is_env(t_nod *n);
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -87,12 +91,18 @@ void	free_2(char **c);
 
 //utils_is
 int		is_env_name(char *c);
+int		is_env_name_c(char c);
 int		is_env_value(char *c);
 int		is_env_value_c(char c);
 int		ft_isnum(char c);
 
-//sep_ve
+//ve
+int	sep_ve_ll(t_nod *n);
 int	sep_ve(t_nod *n);
 int	replace_ve(t_nod *n);
+int	replace_ve_ll(t_nod *n);
+
+
+
 
 #endif

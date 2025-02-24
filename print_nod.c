@@ -50,8 +50,6 @@ void	print_nod_l(t_nod *n, int d)
 	t_nod	*n_tmp;
 	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und"};
 
-
-
 	n_tmp = n->prev;
 	i = 0;
 	while(i < n->nod_size)

@@ -1,7 +1,7 @@
 #include "export.h"
 
 /**
- * @brief format des noms de variablke d environnement : maj , min, _ et num sauf pour la premiere lettre.
+ * @brief format des noms de variable d environnement : maj , min, _ et num sauf pour la premiere lettre.
  *
  * @param c
  * @return int
@@ -31,6 +31,27 @@ int	is_env_name(char *c)
 		i++;
 	}
 	return (1);
+}
+
+/**
+ * @brief format des noms de variable d environnement : maj , min, _ et num ,
+ * ne verifie pas la premiere lettre.
+ *
+ * @param c
+ * @return int
+ * @result 1 si ok, sinon 0
+ */
+int	is_env_name_c(char c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return(1);
+	else if (c >= 'a' && c <= 'z')
+		return(1);
+	else if (c >= '0' && c <= '9')
+		return(1);
+	else if (c == '_')
+		return(1);
+	return (0);
 }
 
 /**

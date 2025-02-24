@@ -85,10 +85,18 @@ int	sep_quote(t_nod *n)
 			n->detail = add_nod(s_q, l, n->c, i, n->detail);
 			i++;
 		}
-		if(n->c[i] && n->c[i] != 34 && n->c[i] != 39) //txt
+		if(n->c[i] == '=') //egal
+		{
+			if(n->eq == 0)
+				n->eq++;
+			else
+				perror("plusieurs =");
+			i++;
+		}
+		if(n->c[i] && n->c[i] != 34 && n->c[i] != 39 && n->c[i] != '=') //txt
 		{
 			l = 0;
-			while(n->c[i] && n->c[i] != 34 && n->c[i] != 39)
+			while(n->c[i] && n->c[i] != 34 && n->c[i] != 39 && n->c[i] != '=')
 			{
 				i++;
 				l++;

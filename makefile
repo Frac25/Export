@@ -12,7 +12,7 @@ PROG =	export\
 		utils_is\
 		utils\
 		utils2\
-		var_env\
+		ve\
 
 SRC = $(addsuffix .c, $(PROG))
 

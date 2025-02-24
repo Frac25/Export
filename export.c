@@ -57,20 +57,22 @@ int main(int argc, char **argv, char **env)
 	if(check_argc(argc, env) != 0)
 		return(check_argc(argc, env));
 	arg1 = format_txt(argv[1]);
-	if(arg1 == NULL)
-		exit(EXIT_FAILURE);
-	printf("arg1 = %s\n", arg1);
-	i = exportable(arg1);
-	if (i == -1)
-		return(-1);
-	else if (i == 2)
-		arg1 = ft_strjoin(arg1, "=\'\'");
+//	if(arg1 == NULL)
+//		exit(EXIT_FAILURE);
+//	printf("arg1 = %s\n", arg1);
+//	i = exportable(arg1);
+//	if (i == -1)
+//		return(-1);
+//	else if (i == 2)
+//		arg1 = ft_strjoin(arg1, "=\'\'");
+///	format_txt(argv[1]);
+
 	i = arg_exist(env, arg1);
 	if(i >= 0)
 		env[i] = arg1; //leaks??
 	else
 		env = ft_strjoin_21(env, arg1);
-	print_2c(env);
+//	print_2c(env);
 	return (0);
 }
 

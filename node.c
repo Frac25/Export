@@ -6,6 +6,7 @@ void	init_nod(t_nod *n)
 	n->level = 0;
 	n->nod_size = 0;
 	n->detail = NULL;
+	n->eq = 0;
 }
 
 int	close_node(t_nod *n)

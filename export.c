@@ -1,13 +1,5 @@
 #include "export.h"
 
-int	ft_arg_check(char *c)
-{
-	char	*c2;
-	c2 = format_txt(c);
-
-	return(1);
-}
-
 int	exportable(char *c)
 {
 	int		i;
@@ -42,7 +34,7 @@ int	exportable(char *c)
 	return(1);
 }
 
-int check_argc(int argc, char **env)
+int	check_argc(int argc, char **env)
 {
 	if(argc <= 0)
 		return(-1);
@@ -67,6 +59,7 @@ int main(int argc, char **argv, char **env)
 	arg1 = format_txt(argv[1]);
 	if(arg1 == NULL)
 		exit(EXIT_FAILURE);
+	printf("arg1 = %s\n", arg1);
 	i = exportable(arg1);
 	if (i == -1)
 		return(-1);

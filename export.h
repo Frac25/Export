@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-typedef enum typ
+typedef enum typ // attention il faut mettre a jour le tableau en cas de modif --> a simplifier
 {
 	d_q,
 	txt,
@@ -14,6 +14,7 @@ typedef enum typ
 	ope,
 	v_e,
 	s_q,
+	und,
 } t_typ;
 
 typedef struct nod
@@ -30,8 +31,13 @@ typedef struct nod
 }	t_nod;
 
 //export
-int		ft_arg_check(char *c);
 int		exportable(char *c);
+int		check_argc(int argc, char **env);
+
+//format
+
+char	*format_txt(char *c);
+char	*nod_to_txt(t_nod *n, char *c);
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -63,11 +69,9 @@ void	print_nod0(t_nod *n);
 void	print_nod_d(t_nod *n);
 
 //quote
-int		check_quote(char *c);
-t_nod	*sep_quote(char *c);
 int		exit_quote(int i);
-char	*format_txt(char *c);
-char	*nod_txt(t_nod *n, char *c);
+int		check_quote(t_nod *n);
+int		sep_quote(t_nod *n);
 
 //utils
 int		ft_search_cins(char *s, char c);

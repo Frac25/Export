@@ -1,9 +1,9 @@
 #include "export.h"
 
 /**
- * @brief 	print le c du nod
- * 
- * @param n 
+ * @brief 	print le char* du nod
+ *
+ * @param n
  */
 void	print_nod0(t_nod *n)
 {
@@ -17,9 +17,9 @@ void	print_nod0(t_nod *n)
 }
 
 /**
- * @brief print le c de tous les nod
- * 
- * @param n 
+ * @brief print le char* de tous les nod du meme level
+ *
+ * @param n
  */
 void	print_nod(t_nod *n)
 {
@@ -39,8 +39,8 @@ void	print_nod(t_nod *n)
 
 /**
  * @brief print les nod et tout les details avals
- * 
- * @param n 
+ *
+ * @param n
  * @param d decale l affichage
  */
 void	print_nod_l(t_nod *n, int d)
@@ -48,7 +48,9 @@ void	print_nod_l(t_nod *n, int d)
 	int		i;
 	int		j;
 	t_nod	*n_tmp;
-	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q"};
+	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und"};
+
+
 
 	n_tmp = n->prev;
 	i = 0;
@@ -67,17 +69,14 @@ void	print_nod_l(t_nod *n, int d)
 
 /**
  * @brief print le detail du nod
- * 
- * @param n 
+ *
+ * @param n
  */
 void	print_nod_d(t_nod *n)
 {
-	t_nod	*n_tmp;
-
-	printf("\nc = %s\n", n_tmp->c);
-	printf("next = %p\n", n_tmp->next);
-	printf("detail = %p\n", n_tmp->detail);
-	printf("typ = %d\n\n", n_tmp->typ);
-
+	printf("\nc = %s\n", n->c);
+	printf("next = %p\n", n->next);
+	printf("detail = %p\n", n->detail);
+	printf("typ = %d\n\n", n->typ);
 }
 

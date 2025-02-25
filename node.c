@@ -6,6 +6,8 @@ void	init_nod(t_nod *n)
 	n->level = 0;
 	n->nod_size = 0;
 	n->detail = NULL;
+	n->copy = NULL;
+	n->last = NULL;
 	n->eq = 0;
 }
 
@@ -63,6 +65,29 @@ t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod)
 		n->c[n->size - j] = c[i - j];
 		j++;
 	}
+	return(n);
+}
+
+/**
+ * @brief ajoute un node d extraction
+ *
+ * @param copy_nod
+ * @param last_nod
+ * @return t_nod*
+ */
+t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod)
+{
+	t_nod	*n;
+	int		j;
+
+	n = malloc(sizeof(t_nod));
+//	if (last_nod == NULL)
+		init_nod(n);
+
+	n->typ = 8;
+	n->next = last_nod;
+	n->copy = copy_nod;
+
 	return(n);
 }
 

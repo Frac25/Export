@@ -78,3 +78,23 @@ void	print_nod_d(t_nod *n)
 	printf("typ = %d\n\n", n->typ);
 }
 
+/**
+ * @brief print le char* de tous les nod extrait
+ *
+ * @param n
+ */
+void	print_nod_e(t_nod *n)
+{
+	int		i;
+	t_nod	*n_tmp;
+
+	n_tmp = n->prev;
+	i = 0;
+	printf("n->nod_size = %d\n", n->nod_size);
+	while(i < n->nod_size)
+	{
+		printf("%s\n", n_tmp->copy->c);
+		n_tmp = n_tmp->prev;
+		i++;
+	}
+}

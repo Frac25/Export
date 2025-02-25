@@ -7,14 +7,15 @@
 
 typedef enum typ // attention il faut mettre a jour le tableau en cas de modif --> a simplifier
 {
-	d_q,
+	d_q,//double quote
 	txt,
 	prg,
 	arg,
-	ope,
-	v_e,
-	s_q,
-	und,
+	ope,//operator
+	v_e,//variable environnemnt
+	s_q,//simple quote
+	und,//undifined
+	r_e,//row extract
 } t_typ;
 
 typedef struct nod
@@ -23,6 +24,8 @@ typedef struct nod
 	struct nod *prev;
 	int nod_size;
 	struct nod *detail;
+	struct nod *copy;
+	struct nod *last;
 	char *c;
 	int size;
 	t_typ typ;
@@ -40,8 +43,9 @@ int		check_argc(int argc, char **env);
 
 char	*format_txt(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
-int	is_env_ll(t_nod *n);
-int	is_env(t_nod *n);
+int		is_env_ll(t_nod *n);
+int		is_env(t_nod *n);
+t_nod	*extract(t_nod *n, t_nod *n_e);
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -65,12 +69,14 @@ char	*ft_strjoin2(char *s1, char *s2);//pas du std
 void	init_nod(t_nod *n);
 t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod);
 int		close_node(t_nod *n);
+t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod);
 
 //print_nod
 void	print_nod(t_nod *n);
 void	print_nod_l(t_nod *n, int d);
 void	print_nod0(t_nod *n);
 void	print_nod_d(t_nod *n);
+void	print_nod_e(t_nod *n);
 
 //quote
 int		exit_quote(int i);

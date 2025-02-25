@@ -87,6 +87,7 @@ int	sep_quote(t_nod *n)
 		}
 		if(n->c[i] == '=') //egal
 		{
+			printf("passe egal\n");
 			if(n->eq == 0)
 				n->eq++;
 			else

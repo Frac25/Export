@@ -14,7 +14,8 @@ void	init_nod(t_nod *n)
 	n->c = NULL;
 	n->d = malloc(sizeof(t_data));
 	n->d->typ2 = und;
-	n->d->ive = 0;
+	n->d->iev = 0;
+	n->d->nbeq = 0;
 }
 
 int	close_node(t_nod *n)

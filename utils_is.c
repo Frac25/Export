@@ -7,7 +7,7 @@
  * @return int
  * @result 1 si ok, sinon 0
  */
-int	is_ven(char *c)
+int	is_evn(char *c)
 {
 	int	i;
 	int	ok;
@@ -41,7 +41,7 @@ int	is_ven(char *c)
  * @return int
  * @result 1 si ok, sinon 0
  */
-int	is_ven_c(char c)
+int	is_evn_c(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return(1);
@@ -61,7 +61,7 @@ int	is_ven_c(char c)
  * @return int
  * @result 1 si ok, sinon 0
  */
-int	is_vev_c(char c)
+int	is_evv_c(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return(1);
@@ -81,7 +81,7 @@ int	is_vev_c(char c)
  * @return int
  * @result 1 si ok, sinon 0
  */
-int	is_vev(char *c)
+int	is_evv(char *c)
 {
 	int i;
 	int ok;

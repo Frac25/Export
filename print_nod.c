@@ -38,28 +38,49 @@ void	print_nod(t_nod *n)
 }
 
 /**
+ * @brief detail en ligne pour print_nod_l
+ *
+ * @param n
+ */
+void	print_nod_d2(t_nod *n)
+{
+	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "e_v", "s_q", "und", "r_e", "evn", "evv", "equ", "pip"};
+	int	i;
+	int j;
+
+	j = 0;
+	while(j++ < n->level)
+		printf("  ");
+	printf("%s : %s", typ[n->typ], n->c);
+	i = (ft_strlen(n->c) + 6 + (n->level * 2)) / 8;
+	while (i <= 2)
+	{
+		printf("	");
+		i++;
+	}
+	printf(" level = %d size = %d", n->level, n->nod_size);
+	printf(" nbeq = %d typ2 = %s iev = %d", n->d->nbeq, typ[n->d->typ2], n->d->iev);
+	printf("\n");
+}
+
+/**
  * @brief print les nod et tout les details avals
  *
  * @param n
  * @param d decale l affichage
  */
-void	print_nod_l(t_nod *n, int d)
+void	print_nod_l(t_nod *n)
 {
 	int		i;
-	int		j;
 	t_nod	*n_tmp;
-	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und", "r_e", "ven", "vev", "equ", "pip"};
 
 	n_tmp = n->prev;
 	i = 0;
 	while(i < n->nod_size)
 	{
-		j = 0;
-		while(j++ < d)
-			printf("  ");
-		printf("%s : %s\n", typ[n_tmp->typ], n_tmp->c);
+		print_nod_d2(n_tmp);
 		if(n_tmp->detail != NULL)
-			print_nod_l(n_tmp->detail, d + 1);
+			print_nod_l(n_tmp->detail);
 		n_tmp = n_tmp->prev;
 		i++;
 	}
@@ -78,6 +99,7 @@ void	print_nod_d(t_nod *n)
 	printf("typ = %d\n\n", n->typ);
 }
 
+
 /**
  * @brief print le char* de tous les nod extrait
  *
@@ -87,7 +109,7 @@ void	print_nod_e(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
-
+printf("passe print node e\n");
 	n_tmp = n->prev;
 	i = 0;
 //	printf("n->nod_size = %d\n", n->nod_size);

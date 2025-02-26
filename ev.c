@@ -1,7 +1,7 @@
 #include "export.h"
 
 
-int	sep_ve_ll(t_nod *n)
+int	sep_ev_ll(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -12,21 +12,21 @@ int	sep_ve_ll(t_nod *n)
 	while(i < n->nod_size)
 	{
 		if(n_tmp->detail == NULL)
-			sep_ve(n_tmp);
+			sep_ev(n_tmp);
 		else
-			sep_ve_ll(n_tmp->detail);
+			sep_ev_ll(n_tmp->detail);
 		n_tmp = n_tmp->next;
 		i++;
 	}
 	return(0);
 }
 
-int	sep_ve(t_nod *n)
+int	sep_ev(t_nod *n)
 {
 	int		i;
 	int		l;
 	t_nod	*n_d;
-	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und"};
+	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "e_v", "s_q", "und"};
 
 //	print_nod0(n);
 	n_d = NULL;
@@ -43,13 +43,13 @@ int	sep_ve(t_nod *n)
 				if (ft_isnum(n->c[i]) == 1)
 					return(10);//a revoir
 				l = 0;
-				while(n->c[i] && is_ven_c(n->c[i]) == 1)
+				while(n->c[i] && is_evn_c(n->c[i]) == 1)
 				{
 					i++;
 					l++;
 				}
 				if(l > 0)
-					n_d = add_nod(v_e, l, n->c, i, n_d);
+					n_d = add_nod(e_v, l, n->c, i, n_d);
 			}
 			else
 			{
@@ -70,7 +70,7 @@ int	sep_ve(t_nod *n)
 	return(0);
 }
 
-int	replace_ve_ll(t_nod *n)
+int	replace_ev_ll(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -80,26 +80,26 @@ int	replace_ve_ll(t_nod *n)
 	while(i < n->nod_size)
 	{
 		if(n_tmp->detail == NULL && n_tmp->typ == 5)
-			replace_ve(n_tmp);
+			replace_ev(n_tmp);
 		else if(n_tmp->detail != NULL)
-			replace_ve_ll(n_tmp->detail);
+			replace_ev_ll(n_tmp->detail);
 		n_tmp = n_tmp->next;
 		i++;
 	}
 	return(0);
 }
 
-int	replace_ve(t_nod *n)
+int	replace_ev(t_nod *n)
 {
-	char *ve = "SYLVAIN";
+	char *ev = "SYLVAIN";
 
-//	if (n->typ == v_e && 1)//a completer
+//	if (n->typ == e_v && 1)//a completer
 //		exit(0); //cas export z$USERa, a verifier
 
-//	if(n->typ != v_e)
+//	if(n->typ != e_v)
 //		printf("erreur : pas une v-e");
 	free(n->c);
-	n->c = ft_strdup(ve);
+	n->c = ft_strdup(ev);
 	return(0);
 }
 

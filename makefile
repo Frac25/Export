@@ -1,18 +1,20 @@
 NAME = export
 
 PROG =	export\
+		extract\
 		format\
 		ft_split\
 		lib\
 		lib_m\
 		node\
 		print_nod\
+		provide\
 		quote\
 		utils_2c\
 		utils_is\
 		utils\
 		utils2\
-		ve\
+		ev\
 
 SRC = $(addsuffix .c, $(PROG))
 

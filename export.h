@@ -12,12 +12,12 @@ typedef enum typ // attention il faut mettre a jour le tableau en cas de modif -
 	prg,
 	arg,
 	ope,//operator
-	v_e,//variable environnemnt
+	e_v,//environnemnt variable
 	s_q,//simple quote
 	und,//undifined
 	r_e,//row extract
-	ven,//v_e name
-	vev,//v_e value
+	evn,//e_v name
+	evv,//e_v value
 	equ,//=
 	pip,//|
 } t_typ;
@@ -25,7 +25,8 @@ typedef enum typ // attention il faut mettre a jour le tableau en cas de modif -
 typedef struct data
 {
 	t_typ	typ2;
-	int		ive;//is_ve
+	int		iev;//is_ev
+	int		nbeq;//nb_equal
 }	t_data;
 
 typedef struct nod
@@ -44,15 +45,18 @@ typedef struct nod
 
 //export
 int		exportable(char *c);
-int		check_argc(int argc, char **env);
+int		check_argc(int argc, char **ev);
+
+//extract
+t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*is_)(t_nod*));
+t_nod	*extract(t_nod *n, t_nod *n_e);
+int		if_name(t_nod *n);
 
 //format
-
 char	*format_txt(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
-int		is_ve_ll(t_nod *n);
-int		is_ve(t_nod *n);
-t_nod	*extract(t_nod *n, t_nod *n_e);
+int		is_ev_ll(t_nod *n);
+int		is_ev(t_nod *n);
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -80,10 +84,14 @@ t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod);
 
 //print_nod
 void	print_nod(t_nod *n);
-void	print_nod_l(t_nod *n, int d);
+void	print_nod_l(t_nod *n);
 void	print_nod0(t_nod *n);
 void	print_nod_d(t_nod *n);
 void	print_nod_e(t_nod *n);
+
+//provide
+int		provide_nbeq(t_nod *n, int nbeq);
+int		provide_level(t_nod *n , int level);
 
 //quote
 int		exit_quote(int i);
@@ -103,17 +111,17 @@ char	**ft_copy_2(char **s1);
 void	free_2(char **c);
 
 //utils_is
-int		is_ven(char *c);
-int		is_ven_c(char c);
-int		is_vev(char *c);
-int		is_vev_c(char c);
+int		is_evn(char *c);
+int		is_evn_c(char c);
+int		is_evv(char *c);
+int		is_evv_c(char c);
 int		ft_isnum(char c);
 
-//ve
-int	sep_ve_ll(t_nod *n);
-int	sep_ve(t_nod *n);
-int	replace_ve(t_nod *n);
-int	replace_ve_ll(t_nod *n);
+//ev
+int	sep_ev_ll(t_nod *n);
+int	sep_ev(t_nod *n);
+int	replace_ev(t_nod *n);
+int	replace_ev_ll(t_nod *n);
 
 
 

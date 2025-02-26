@@ -43,7 +43,7 @@ int	sep_ve(t_nod *n)
 				if (ft_isnum(n->c[i]) == 1)
 					return(10);//a revoir
 				l = 0;
-				while(n->c[i] && is_env_name_c(n->c[i]) == 1)
+				while(n->c[i] && is_ven_c(n->c[i]) == 1)
 				{
 					i++;
 					l++;

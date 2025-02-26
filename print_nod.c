@@ -28,7 +28,7 @@ void	print_nod(t_nod *n)
 
 	n_tmp = n->prev;
 	i = 0;
-	printf("n->nod_size = %d\n", n->nod_size);
+//	printf("n->nod_size = %d\n", n->nod_size);
 	while(i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->c);
@@ -48,7 +48,7 @@ void	print_nod_l(t_nod *n, int d)
 	int		i;
 	int		j;
 	t_nod	*n_tmp;
-	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und"};
+	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "v_e", "s_q", "und", "r_e", "ven", "vev", "equ", "pip"};
 
 	n_tmp = n->prev;
 	i = 0;
@@ -90,7 +90,7 @@ void	print_nod_e(t_nod *n)
 
 	n_tmp = n->prev;
 	i = 0;
-	printf("n->nod_size = %d\n", n->nod_size);
+//	printf("n->nod_size = %d\n", n->nod_size);
 	while(i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->copy->c);

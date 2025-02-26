@@ -11,16 +11,16 @@ char	*format_txt(char *c)
 	sep_quote(n);
 	sep_ve_ll(n);
 	replace_ve_ll(n);
-	if (is_env_ll(n) == -1)
-		return (NULL);
+//	if (is_ve_ll(n) == -1)
+//		return (NULL);
 	print_nod_l(n,0);
-
+//exit(0);
 	res = extract(n, NULL);
 	if(res == NULL)
 		exit(EXIT_SUCCESS);
 	close_node(res);
 	printf("\n");
-	print_nod_e(res);
+//	print_nod_e(res);
 
 	exit(EXIT_SUCCESS);
 //	printf("nod_to_txt = %s", nod_to_txt(sep_quote(c), NULL));
@@ -48,7 +48,7 @@ char	*nod_to_txt(t_nod *n, char *c)
 	return(c);
 }
 
-int	is_env_ll(t_nod *n)
+int	is_ve_ll(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -59,12 +59,12 @@ int	is_env_ll(t_nod *n)
 	{
 		if(n_tmp->detail == NULL)
 		{
-			if(is_env(n_tmp) == -1)
+			if(is_ve(n_tmp) == -1)
 				return (-1);
 		}
 		else
 		{
-			if(is_env_ll(n_tmp->detail) == -1)
+			if(is_ve_ll(n_tmp->detail) == -1)
 				 return (-1);
 		}
 		n_tmp = n_tmp->next;
@@ -73,12 +73,12 @@ int	is_env_ll(t_nod *n)
 	return(0);
 }
 
-int	is_env(t_nod *n)
+int	is_ve(t_nod *n)
 {
-	if(n->eq == 0)
-		n->i_e = is_env_name(n->c);
-	else if (n->eq == 1)
-		n->i_e = is_env_value(n->c);
+	if(n->d->typ2 == ven)
+		n->d->ive = is_ven(n->c);
+	else if (n->d->typ2 == vev)
+		n->d->ive = is_vev(n->c);
 	else
 		return (-1);
 	return (0);
@@ -106,7 +106,7 @@ t_nod	*extract(t_nod *n, t_nod *n_e)
 	{
 		if(n_tmp->detail == NULL)
 		{
-			if(n_tmp->i_e == 0)
+			if(n_tmp->d->ive == 0)
 				n_last = add_nod_e(n_tmp, n_last);
 		}
 		else
@@ -117,3 +117,4 @@ t_nod	*extract(t_nod *n, t_nod *n_e)
 //	printf("c3 \n");
 	return(n_last);
 }
+

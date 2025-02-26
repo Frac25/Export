@@ -12,7 +12,7 @@ int	exportable(char *c)
 	if(n == -1)
 	{
 		printf("cas pas de '=' \n");
-		if (is_env_name(c) == 0)
+		if (is_ven(c) == 0)
 			return(-1);
 		return(2);
 	}
@@ -21,12 +21,12 @@ int	exportable(char *c)
 		if (c[n] == ' ' || c[n + 1] == ' ')
 			return(-1); //utile?
 		arg = ft_split(c, '='); //a tester : si plusieurs =
-		if (is_env_name(arg[0]) == 0)
+		if (is_ven(arg[0]) == 0)
 			return(-1);
 
 		c_tmp = format_txt(arg[1]);
 		printf("c_tmp = %s\n", c_tmp);
-		if(is_env_value(c_tmp) == 0)
+		if(is_vev(c_tmp) == 0)
 			{printf("pb env value"); return(-1);}
 	}
 //	printf("arg de export sans erreur\n");

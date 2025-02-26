@@ -87,11 +87,7 @@ int	sep_quote(t_nod *n)
 		}
 		if(n->c[i] == '=') //egal
 		{
-			printf("passe egal\n");
-			if(n->eq == 0)
-				n->eq++;
-			else
-				perror("plusieurs =");
+			n->detail = add_nod(equ, 1, n->c, i + 1, n->detail);
 			i++;
 		}
 		if(n->c[i] && n->c[i] != 34 && n->c[i] != 39 && n->c[i] != '=') //txt

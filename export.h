@@ -16,23 +16,30 @@ typedef enum typ // attention il faut mettre a jour le tableau en cas de modif -
 	s_q,//simple quote
 	und,//undifined
 	r_e,//row extract
+	ven,//v_e name
+	vev,//v_e value
+	equ,//=
+	pip,//|
 } t_typ;
+
+typedef struct data
+{
+	t_typ	typ2;
+	int		ive;//is_ve
+}	t_data;
 
 typedef struct nod
 {
-	struct nod *next;
-	struct nod *prev;
-	int nod_size;
-	struct nod *detail;
-	struct nod *copy;
-	struct nod *last;
-	char *c;
-	int size;
-	t_typ typ;
-	int level;
-	int index;
-	int eq;//equal;
-	int i_e;//is_env;
+	struct nod	*next;
+	struct nod	*prev;
+	struct nod	*detail;
+	struct nod	*copy;
+	int			nod_size;
+	int			level;
+	int			index;
+	t_typ		typ;
+	char		*c;
+	t_data		*d;
 }	t_nod;
 
 //export
@@ -43,8 +50,8 @@ int		check_argc(int argc, char **env);
 
 char	*format_txt(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
-int		is_env_ll(t_nod *n);
-int		is_env(t_nod *n);
+int		is_ve_ll(t_nod *n);
+int		is_ve(t_nod *n);
 t_nod	*extract(t_nod *n, t_nod *n_e);
 
 //ft_split
@@ -96,10 +103,10 @@ char	**ft_copy_2(char **s1);
 void	free_2(char **c);
 
 //utils_is
-int		is_env_name(char *c);
-int		is_env_name_c(char c);
-int		is_env_value(char *c);
-int		is_env_value_c(char c);
+int		is_ven(char *c);
+int		is_ven_c(char c);
+int		is_vev(char *c);
+int		is_vev_c(char c);
 int		ft_isnum(char c);
 
 //ve

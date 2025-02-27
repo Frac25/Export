@@ -32,16 +32,19 @@ int	sep_ev(t_nod *n)
 	n_d = NULL;
 	i = 0;
 
-	if(n->typ == 0 || n->typ == 1)
+	if(n->typ == d_q || n->typ == txt)
 	{
 
 		while(n->c[i])
 		{
-			if(n->c[i] == 36) //dollars
+			if(n->c[i] == '$')
 			{
 				i++;
 				if (ft_isnum(n->c[i]) == 1)
+				{
+					perror("commence par un numerique, KO");
 					return(10);//a revoir
+				}
 				l = 0;
 				while(n->c[i] && is_evn_c(n->c[i]) == 1)
 				{
@@ -54,7 +57,7 @@ int	sep_ev(t_nod *n)
 			else
 			{
 				l = 0;
-				while(n->c[i] && n->c[i] != 36)
+				while(n->c[i] && n->c[i] != '$')
 				{
 					i++;
 					l++;
@@ -79,7 +82,7 @@ int	replace_ev_ll(t_nod *n)
 	i = 0;
 	while(i < n->nod_size)
 	{
-		if(n_tmp->detail == NULL && n_tmp->typ == 5)
+		if(n_tmp->detail == NULL && n_tmp->typ == e_v)
 			replace_ev(n_tmp);
 		else if(n_tmp->detail != NULL)
 			replace_ev_ll(n_tmp->detail);
@@ -93,7 +96,7 @@ int	replace_ev(t_nod *n)
 {
 	char *ev = "SYLVAIN";
 
-//	if (n->typ == e_v && 1)//a completer
+//	if (n->typ == e_v && 1)//a completer SDU
 //		exit(0); //cas export z$USERa, a verifier
 
 //	if(n->typ != e_v)
@@ -102,7 +105,5 @@ int	replace_ev(t_nod *n)
 	n->c = ft_strdup(ev);
 	return(0);
 }
-
-
 
 //./export "txt1'q1\$USER.q2'txt2\$USER.txt3\"dq1\$USER.dq2\"txt4"

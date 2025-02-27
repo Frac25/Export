@@ -1,5 +1,6 @@
 #include "export.h"
 
+/*
 int	exportable(char *c)
 {
 	int		i;
@@ -24,7 +25,7 @@ int	exportable(char *c)
 		if (is_evn(arg[0]) == 0)
 			return(-1);
 
-		c_tmp = format_txt(arg[1]);
+		c_tmp = parsing(arg[1]);
 		printf("c_tmp = %s\n", c_tmp);
 		if(is_evv(c_tmp) == 0)
 			{printf("pb ev"); return(-1);}
@@ -33,6 +34,7 @@ int	exportable(char *c)
 	free(arg);
 	return(1);
 }
+*/
 
 int	check_argc(int argc, char **ev)
 {
@@ -49,30 +51,35 @@ int	check_argc(int argc, char **ev)
 	}
 	return(-1);
 }
+
 int main(int argc, char **argv, char **ev)
 {
 	int i;
-	char *arg1;
+	t_nod *n;
+	char *exp;
+	char *name;
+	char *value;
+
 
 	if(check_argc(argc, ev) != 0)
 		return(check_argc(argc, ev));
-	arg1 = format_txt(argv[1]);
-//	if(arg1 == NULL)
-//		exit(EXIT_FAILURE);
-//	printf("arg1 = %s\n", arg1);
-//	i = exportable(arg1);
-//	if (i == -1)
-//		return(-1);
-//	else if (i == 2)
-//		arg1 = ft_strjoin(arg1, "=\'\'");
-///	format_txt(argv[1]);
 
-	i = arg_exist(ev, arg1);
-	if(i >= 0)
-		ev[i] = arg1; //leaks??
-	else
-		ev = ft_strjoin_21(ev, arg1);
-//	print_2c(ev);
+	n = parsing(argv[1]);
+
+	name = nod_to_txt_e(extract_if(n, NULL, if_ev_name));
+	printf("\nname = %s\n", name);
+
+	value = nod_to_txt_e(extract_if(n, NULL, if_ev_value));
+	printf("\nvalue = %s\n\n", value);
+
+//	exp = ft_strjoin(name, "=\'\'");
+	exp = ft_strjoin(name, "=");
+	exp = ft_strjoin(exp, value);
+	printf("\nexp = %s\n\n", exp);
+
+	if()
+
+
 	return (0);
 }
 
@@ -84,9 +91,10 @@ int main(int argc, char **argv, char **ev)
 //export NOM_txt1'q1q2'txt2$USER"dq1$USERdq2"txt4=VALEUR_txt1'q1.,:q2'txt2$USER"dq1$USER.dq2"txt4
 //./export "NOM_txt1'q1q2'txt2\$USER\"dq1\$USERdq2\"txt4"="VALEUR_txt1'q1.,:q2'txt2\$USER\"dq1\$USER.dq2\"txt4"
 
-//test : export NOM_txt1'q1q2'txt2$USER  "     dq1 $USERdq2 "txt4  =VALEUR_txt1'q1.,:q2'txt2$USER"       dq1 $USER       .dq2 "txt4
-//resultat :    NOM_txt1 q1q2 txt2sylvainduboisdq1           txt4  =VALEUR_txt1 q1.,:q2 txt2sylvainduboisdq1sylvaindubois.dq2  txt4
-//T   ./export "NOM_txt1'q1q2'txt2\$USER\"     dq1\$USERdq2\"txt4"="VALEUR_txt1'q1.,:q2'txt2\$USER\"     dq1\$USER       .dq2\"txt4"
+//test : export NOM_txt1'q1q2'txt2$USER  "     dq1 $USERdq2 "txt4  = VALEUR_txt1'q1.,:q2'txt2$USER"       dq1 $USER       .dq2 "txt4
+//resultat :    NOM_txt1 q1q2 txt2sylvainduboisdq1           txt4  = VALEUR_txt1 q1.,:q2 txt2sylvainduboisdq1sylvaindubois.dq2  txt4
+//T   ./export "NOM_txt1'q1q2'txt2\$USER\"     dq1\$USERdq2\"txt4" ="VALEUR_txt1'q1.,:q2'txt2\$USER\"     dq1\$USER       .dq2\"txt4"
+//				NOM_txt1 q1q2 txt2SYLVAIN      dq1 SYLVAIN   txt4  = VALEUR_txt1 q1.,:q2 txt2SYLVAIN      dq1SYLVAIN      .dq2  txt4
 
 
 

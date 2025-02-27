@@ -8,9 +8,9 @@
 typedef enum typ // attention il faut mettre a jour le tableau en cas de modif --> a simplifier
 {
 	d_q,// 0 double quote
-	txt,// 1
-	prg,// 2
-	arg,// 3
+	txt,// 1 text
+	prg,// 2 program
+	arg,// 3 argument
 	ope,// 4 operator
 	e_v,// 5 environnemnt variable
 	s_q,// 6 simple quote
@@ -50,14 +50,13 @@ int		check_argc(int argc, char **ev);
 //extract
 t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*is_)(t_nod*));
 t_nod	*extract(t_nod *n, t_nod *n_e);
-int		if_name(t_nod *n);
-int		if_value(t_nod *n);
+int		if_ev_name(t_nod *n);
+int		if_ev_value(t_nod *n);
 
 //format
-char	*format_txt(char *c);
+t_nod	*parsing(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
 char	*nod_to_txt_e(t_nod *n);
-
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -65,7 +64,6 @@ char	**ft_split(char const *s, char c);
 //insert
 char	**ft_strjoin_21(char **s1, char *s2);
 int		arg_exist(char **s1, char *s2);
-
 
 //lib
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -126,8 +124,6 @@ int	sep_ev_ll(t_nod *n);
 int	sep_ev(t_nod *n);
 int	replace_ev(t_nod *n);
 int	replace_ev_ll(t_nod *n);
-
-
 
 
 #endif

@@ -88,13 +88,10 @@ t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod)
 	int		j;
 
 	n = malloc(sizeof(t_nod));
-//	if (last_nod == NULL)
-		init_nod(n);
-
-	n->typ = 8;
+	init_nod(n);
+	n->typ = r_e;
 	n->next = last_nod;
 	n->copy = copy_nod;
-
 	return(n);
 }
 

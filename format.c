@@ -1,38 +1,20 @@
 #include "export.h"
 
-char	*format_txt(char *c)
+t_nod	*parsing(char *c)
 {
 	t_nod *n;
-	t_nod *name;
-	t_nod *value;
 
-	int i;
-
-	n = add_nod(und, ft_strlen(c), c, ft_strlen(c), NULL);
+	n = add_nod(und, ft_strlen(c), c, ft_strlen(c), NULL); //level 0
 	close_node(n);
 	check_quote(n);
-	sep_quote(n);
-	sep_ev_ll(n);
+	sep_quote(n); //level 1
+	sep_ev_ll(n); //level 2
 	replace_ev_ll(n);
 	provide_level(n, 0);
 	provide_nbeq(n, 0);
 	is_ev_ll(n);
 	print_nod_l(n);
-
-	name = extract_if(n, NULL, if_name);
-	close_node(name);
-	printf("\n");
-//	print_nod_e(name);
-	printf("name = %s", nod_to_txt_e(name));
-
-	value = extract_if(n, NULL, if_value);
-	close_node(value);
-	printf("\n");
-//	print_nod_e(name);
-	printf("value = %s", nod_to_txt_e(value));
-
-	exit(0);
-	return (0);
+	return (n);
 }
 
 char	*nod_to_txt(t_nod *n, char *c)
@@ -63,12 +45,12 @@ char	*nod_to_txt_e(t_nod *n)
 	char	*c;
 
 	c = NULL;
-	n_tmp = n->prev;
+	n_tmp = n;
 	i = 0;
 	while(i < n->nod_size)
 	{
 		c = ft_strjoin2(c, n_tmp->copy->c); // il faudra free c dans join
-		n_tmp = n_tmp->prev;
+		n_tmp = n_tmp->next;
 		i++;
 	}
 //	printf("c3 = %s\n", c);

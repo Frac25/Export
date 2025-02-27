@@ -18,19 +18,22 @@ PROG =	export\
 
 SRC = $(addsuffix .c, $(PROG))
 
-OBJ = $(addsuffix .o, $(PROG))
+OBJ = $(addprefix obj/, $(addsuffix .o, $(PROG)))
 
 CC = cc
 
 #CFLAGS = -Wall -Wextra -Werror -g
 CFLAGS = -g
 
-all :		$(NAME)
+obj/:
+			mkdir -p obj
+
+all :		obj/ $(NAME)
 
 $(NAME) :	$(OBJ)
 			$(CC) $(OBJ) -o $(NAME)
 
-%.o :		%.c
+obj/%.o :	%.c | obj/
 			$(CC) -c $< $(CFLAGS) -o $@
 
 clean :

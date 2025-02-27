@@ -7,7 +7,7 @@ int	size_2(char **c)
 	i = 0;
 	while (c[i])
 		i++;
-	return(i);
+	return (i);
 }
 
 void	free_2(char **c)
@@ -25,13 +25,12 @@ void	free_2(char **c)
 
 char	**ft_strjoin_2(char **s1, char **s2)
 {
-	char		**c;
+	char	**c;
 	int		i;
-	int	j;
+	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-
 	c = malloc(sizeof(char *) * (size_2(s1) + size_2(s2) + 1));
 	if (c == NULL)
 		return (NULL);
@@ -56,7 +55,6 @@ char	**ft_copy_2(char **s1)
 
 	if (!s1)
 		return (NULL);
-
 	c = malloc(sizeof(char *) * (size_2(s1)));
 	if (c == NULL)
 		return (NULL);
@@ -92,9 +90,8 @@ void	print_2c(char **c)
 		}
 		write(1, c[i], j);
 		write(1, "\n", 1);
-
-	i++;
+		i++;
 	}
-		write(1, c[i], j);
-		write(1, "\n", 1);
+	write(1, c[i], j);
+	write(1, "\n", 1);
 }

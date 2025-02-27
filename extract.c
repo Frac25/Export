@@ -7,7 +7,7 @@ int	if_ev_name(t_nod *n)
 	{
 		return (1);
 	}
-	return(-1);
+	return (-1);
 }
 
 int	if_ev_value(t_nod *n)
@@ -17,11 +17,12 @@ int	if_ev_value(t_nod *n)
 	{
 		return (1);
 	}
-	return(-1);
+	return (-1);
 }
 
 /**
- * @brief recherche sur le dernier niveau en fonction de la fonction de tri donnee
+ * @brief recherche sur le dernier niveau en
+ * fonction de la fonction de tri donnee
  *
  * @param n : base de donnee
  * @param n_e : stockage du resultat
@@ -37,11 +38,11 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 	n_tmp = n;
 	n_last = n_e;
 	i = 0;
-	while(i < n->nod_size)
+	while (i < n->nod_size)
 	{
-		if(n_tmp->detail == NULL)
+		if (n_tmp->detail == NULL)
 		{
-			if(f(n_tmp) == 1)
+			if (f(n_tmp) == 1)
 				n_last = add_nod_e(n_tmp, n_last);
 		}
 		else
@@ -49,11 +50,9 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 		n_tmp = n_tmp->next;
 		i++;
 	}
-	if(n->level == 0)
-	{
+	if (n->level == 0)
 		close_node(n_last);
-	}
-	return(n_last);
+	return (n_last);
 }
 
 /**
@@ -72,12 +71,11 @@ t_nod	*extract(t_nod *n, t_nod *n_e)
 	n_tmp = n;
 	n_last = n_e;
 	i = 0;
-//	printf("n->nod_size = %d\n", n->nod_size);
-	while(i < n->nod_size)
+	while (i < n->nod_size)
 	{
-		if(n_tmp->detail == NULL)
+		if (n_tmp->detail == NULL)
 		{
-			if(n->d->typ2 != evn)
+			if (n->d->typ2 != evn)
 				n_last = add_nod_e(n_tmp, n_last);
 		}
 		else
@@ -85,6 +83,5 @@ t_nod	*extract(t_nod *n, t_nod *n_e)
 		n_tmp = n_tmp->next;
 		i++;
 	}
-//	printf("c3 \n");
-	return(n_last);
+	return (n_last);
 }

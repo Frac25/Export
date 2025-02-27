@@ -62,8 +62,8 @@ char	*nod_to_txt_e(t_nod *n);
 char	**ft_split(char const *s, char c);
 
 //insert
-char	**ft_strjoin_21(char **s1, char *s2);
-int		arg_exist(char **s1, char *s2);
+char	**ft_strjoin_21(char *s1, char **s2);
+int		arg_exist(char *s1, char **s2);
 
 //lib
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -74,6 +74,8 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //lib_m
 char	*ft_strjoin2(char *s1, char *s2);//pas du std
+int		ft_strcmp2(const char *s1, const char *s2);
+char	*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 
 //node
 void	init_nod(t_nod *n);
@@ -122,8 +124,8 @@ int		ft_isnum(char c);
 //ev
 int	sep_ev_ll(t_nod *n);
 int	sep_ev(t_nod *n);
-int	replace_ev(t_nod *n);
-int	replace_ev_ll(t_nod *n);
+int	replace_ev(t_nod *n, char **env);
+int	replace_ev_ll(t_nod *n, char **env);
 
 
 #endif

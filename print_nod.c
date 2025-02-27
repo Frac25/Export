@@ -29,7 +29,7 @@ void	print_nod(t_nod *n)
 	n_tmp = n->prev;
 	i = 0;
 //	printf("n->nod_size = %d\n", n->nod_size);
-	while(i < n->nod_size)
+	while (i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->c);
 		n_tmp = n_tmp->prev;
@@ -45,11 +45,11 @@ void	print_nod(t_nod *n)
 void	print_nod_d2(t_nod *n)
 {
 	char	*typ[] = {"d_q", "txt", "prg", "arg", "ope", "e_v", "s_q", "und", "r_e", "evn", "evv", "equ", "pip"};
-	int	i;
-	int j;
+	int		i;
+	int		j;
 
 	j = 0;
-	while(j++ < n->level)
+	while (j++ < n->level)
 		printf("  ");
 	printf("%s : %s", typ[n->typ], n->c);
 	i = (ft_strlen(n->c) + 6 + (n->level * 2)) / 8;
@@ -76,10 +76,10 @@ void	print_nod_l(t_nod *n)
 
 	n_tmp = n->prev;
 	i = 0;
-	while(i < n->nod_size)
+	while (i < n->nod_size)
 	{
 		print_nod_d2(n_tmp);
-		if(n_tmp->detail != NULL)
+		if (n_tmp->detail != NULL)
 			print_nod_l(n_tmp->detail);
 		n_tmp = n_tmp->prev;
 		i++;
@@ -99,7 +99,6 @@ void	print_nod_d(t_nod *n)
 	printf("typ = %d\n\n", n->typ);
 }
 
-
 /**
  * @brief print le char* de tous les nod extrait
  *
@@ -112,7 +111,7 @@ void	print_nod_e(t_nod *n)
 
 	n_tmp = n->prev;
 	i = 0;
-	while(i < n->nod_size)
+	while (i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->copy->c);
 		n_tmp = n_tmp->prev;

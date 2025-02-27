@@ -7,19 +7,19 @@
 
 typedef enum typ // attention il faut mettre a jour le tableau en cas de modif --> a simplifier
 {
-	d_q,//double quote
-	txt,
-	prg,
-	arg,
-	ope,//operator
-	e_v,//environnemnt variable
-	s_q,//simple quote
-	und,//undifined
-	r_e,//row extract
-	evn,//e_v name
-	evv,//e_v value
-	equ,//=
-	pip,//|
+	d_q,// 0 double quote
+	txt,// 1
+	prg,// 2
+	arg,// 3
+	ope,// 4 operator
+	e_v,// 5 environnemnt variable
+	s_q,// 6 simple quote
+	und,// 7 undefined
+	r_e,// 8 row extract
+	evn,// 9 e_v name
+	evv,// 10 e_v value
+	equ,// 11 =
+	pip,// 12 |
 } t_typ;
 
 typedef struct data
@@ -51,12 +51,13 @@ int		check_argc(int argc, char **ev);
 t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*is_)(t_nod*));
 t_nod	*extract(t_nod *n, t_nod *n_e);
 int		if_name(t_nod *n);
+int		if_value(t_nod *n);
 
 //format
 char	*format_txt(char *c);
 char	*nod_to_txt(t_nod *n, char *c);
-int		is_ev_ll(t_nod *n);
-int		is_ev(t_nod *n);
+char	*nod_to_txt_e(t_nod *n);
+
 
 //ft_split
 char	**ft_split(char const *s, char c);
@@ -92,6 +93,9 @@ void	print_nod_e(t_nod *n);
 //provide
 int		provide_nbeq(t_nod *n, int nbeq);
 int		provide_level(t_nod *n , int level);
+
+int		is_ev_ll(t_nod *n);
+int		is_ev(t_nod *n);
 
 //quote
 int		exit_quote(int i);

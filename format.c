@@ -18,15 +18,21 @@ char	*format_txt(char *c)
 	provide_nbeq(n, 0);
 	is_ev_ll(n);
 	print_nod_l(n);
-//exit(0);
+
 	name = extract_if(n, NULL, if_name);
-//	name = extract(n, NULL);
 	close_node(name);
 	printf("\n");
-	print_nod_e(name);
-	exit(EXIT_SUCCESS);
-//	printf("nod_to_txt = %s", nod_to_txt(sep_quote(c), NULL));
-	return (nod_to_txt(n, NULL));
+//	print_nod_e(name);
+	printf("name = %s", nod_to_txt_e(name));
+
+	value = extract_if(n, NULL, if_value);
+	close_node(value);
+	printf("\n");
+//	print_nod_e(name);
+	printf("value = %s", nod_to_txt_e(value));
+
+	exit(0);
+	return (0);
 }
 
 char	*nod_to_txt(t_nod *n, char *c)
@@ -50,51 +56,22 @@ char	*nod_to_txt(t_nod *n, char *c)
 	return(c);
 }
 
-
-
-int	is_ev_ll(t_nod *n)
+char	*nod_to_txt_e(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
+	char	*c;
 
-	n_tmp = n;
+	c = NULL;
+	n_tmp = n->prev;
 	i = 0;
 	while(i < n->nod_size)
 	{
-		if(n_tmp->detail == NULL)
-		{
-			if(is_ev(n_tmp) == -1)
-				return (-1);
-		}
-		else
-		{
-			if(is_ev_ll(n_tmp->detail) == -1)
-				return (-1);
-		}
-		n_tmp = n_tmp->next;
+		c = ft_strjoin2(c, n_tmp->copy->c); // il faudra free c dans join
+		n_tmp = n_tmp->prev;
 		i++;
 	}
-	return(0);
+//	printf("c3 = %s\n", c);
+	return(c);
 }
-
-int	is_ev(t_nod *n)
-{
-	if(n->d->nbeq > 1)
-	{
-		perror("error : plusieurs '=' ");
-		exit(EXIT_FAILURE);
-	}
-	if(n->d->nbeq == 0 && is_evn(n->c) == 1)
-	{
-		n->d->typ2 = evn;
-		return(0);
-	}
-	if(n->d->nbeq == 1 && is_evv(n->c) == 1)
-	{
-		n->d->typ2 = evv;
-		return(0);
-	}
-	return (-1);
-}
-// ./export "\"test\""
 

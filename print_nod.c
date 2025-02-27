@@ -58,8 +58,8 @@ void	print_nod_d2(t_nod *n)
 		printf("	");
 		i++;
 	}
-	printf(" level = %d size = %d", n->level, n->nod_size);
-	printf(" nbeq = %d typ2 = %s iev = %d", n->d->nbeq, typ[n->d->typ2], n->d->iev);
+	printf(" level = %d   size = %d", n->level, n->nod_size);
+	printf("   nbeq = %d   typ2 = %s   iev = %d", n->d->nbeq, typ[n->d->typ2], n->d->iev);
 	printf("\n");
 }
 
@@ -109,10 +109,9 @@ void	print_nod_e(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
-printf("passe print node e\n");
+
 	n_tmp = n->prev;
 	i = 0;
-//	printf("n->nod_size = %d\n", n->nod_size);
 	while(i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->copy->c);

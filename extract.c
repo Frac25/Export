@@ -4,7 +4,18 @@
 
 int	if_name(t_nod *n)
 {
+//	printf("n->d->typ2 = %d\n", n->d->typ2);
 	if (n->d->typ2 == evn)
+	{
+		return (1);
+	}
+	return(-1);
+}
+
+int	if_value(t_nod *n)
+{
+//	printf("n->d->typ2 = %d\n", n->d->typ2);
+	if (n->d->typ2 == evv)
 	{
 		return (1);
 	}
@@ -25,9 +36,9 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 	{
 		if(n_tmp->detail == NULL)
 		{
-			if(f(n_tmp) != 1) //faux c est pour le test => ==1
+			if(f(n_tmp) == 1)
 			{
-				printf("TYP = EVN\n");
+//				printf("f(n_tmp) = %d\n", f(n_tmp));
 				n_last = add_nod_e(n_tmp, n_last);
 			}
 		}

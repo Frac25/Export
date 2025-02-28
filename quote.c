@@ -101,6 +101,6 @@ int	sep_quote(t_nod *n)
 			n->detail = add_nod(txt, l, n->c, i, n->detail);
 		}
 	}
-	close_node(n->detail);
+	close_nod(n->detail);
 	return (0);
 }

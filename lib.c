@@ -1,8 +1,8 @@
 #include "export.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')
@@ -10,10 +10,10 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strnstr(const char *str, const char *s, size_t len)
+char	*ft_strnstr(const char *str, const char *s, int len)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	char	*str1;
 
 	str1 = (char *)str;
@@ -36,9 +36,9 @@ char	*ft_strnstr(const char *str, const char *s, size_t len)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*c;
-	size_t		i;
-	size_t		j;
+	char	*c;
+	int		i;
+	int		j;
 
 	if (s1 && s2)
 	{
@@ -78,9 +78,9 @@ char	*ft_strdup(const char *s1)
 	return (c);
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_strncmp(const char *s1, const char *s2, int n)
 {
-	unsigned int	i;
+	int	i;
 	unsigned char	*t1;
 	unsigned char	*t2;
 

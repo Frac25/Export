@@ -61,7 +61,7 @@ int	sep_ev(t_nod *n)
 			}
 		}
 	}
-	close_node(n_d);
+	close_nod(n_d);
 	n->detail = n_d;
 	return (0);
 }
@@ -90,21 +90,11 @@ int	replace_ev(t_nod *n, char **env)
 	int		i;
 	char	**arg;
 
-//	*ev = "SYLVAIN";
-
-//	if(n->typ != e_v)
-//		printf("erreur : pas une v-e");
-
-//	if (n->typ == e_v && 1)//a completer SDU
-//		exit(0); //cas export z$USERa, a verifier
 	arg = NULL;
 	i = 0;
-
 	while(env[i])
 	{
-//		if(i == 1) {printf("env[%d] = %s\n", i, env[i]);}
 		arg = ft_split(env[i], '=');
-//		if(i == 1) {printf("arg[0] = %s et arg[1] = %s et n->c = %s\n", arg[0], arg[1], n->c);}
 		if (ft_strcmp2(arg[0], n->c) == 0)
 		{
 			free(n->c);
@@ -115,10 +105,7 @@ int	replace_ev(t_nod *n, char **env)
 		free(arg);
 		i++;
 	}
-//	printf("ev non trouvee\n");
 	free(n->c);
 	n->c = ft_strdup("");
 	return (-1);
 }
-
-//./export "txt1'q1\$USER.q2'txt2\$USER.txt3\"dq1\$USER.dq2\"txt4"

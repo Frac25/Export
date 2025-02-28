@@ -10,8 +10,8 @@
 char	*ft_strjoin2(char *s1, char *s2)
 {
 	char		*c;
-	size_t		i;
-	size_t		j;
+	int		i;
+	int		j;
 
 	if (s1 == NULL && s2 == NULL)
 		return (NULL);
@@ -58,8 +58,8 @@ int	cpy(char *c, char const *s1, int i)
 char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 {
 	char	*c;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	int		l;
 
 	l = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);

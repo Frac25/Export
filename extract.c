@@ -51,7 +51,7 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 		i++;
 	}
 	if (n->level == 0)
-		close_node(n_last);
+		close_nod(n_last);
 	return (n_last);
 }
 

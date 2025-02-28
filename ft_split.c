@@ -1,6 +1,6 @@
 #include "export.h"
 
-int	check_free_all(char **s, size_t size)
+int	check_free_all(char **s, int size)
 {
 	if (s[size] == NULL)
 	{
@@ -14,8 +14,8 @@ int	check_free_all(char **s, size_t size)
 
 void	*ft_malcol(const char *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 	char	*p;
 
 	i = 0;
@@ -35,9 +35,9 @@ void	*ft_malcol(const char *s, char c)
 	return (p);
 }
 
-void	*ft_mallin(const char *s, size_t end)
+void	*ft_mallin(const char *s, int end)
 {
-	size_t	i;
+	int	i;
 	char	*p;
 
 	i = 0;
@@ -56,8 +56,8 @@ void	*ft_mallin(const char *s, size_t end)
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	tab = ft_malcol(s, c);
 	if (tab == NULL)

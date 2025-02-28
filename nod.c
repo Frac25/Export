@@ -17,7 +17,7 @@ void	init_nod(t_nod *n)
 	n->d->nbeq = 0;
 }
 
-int	close_node(t_nod *n)
+int	close_nod(t_nod *n)
 {
 	t_nod	*n_tmp;
 	t_nod	*n_tmp2;
@@ -73,8 +73,30 @@ t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod) //SDU cf struc
 	return (n);
 }
 
+void	free_nod(t_nod *n)
+{
+	int		i;
+	t_nod	*n_tmp;
+	t_nod	*n_s;
+
+	n_s = n;
+	n_tmp = n;
+	i = 0;
+	while (i < n->nod_size)
+	{
+		if (n_tmp->detail != NULL)
+			free_nod(n_tmp->detail);
+		n_tmp = n_tmp->next;
+		free(n_s->c);
+		free(n_s->d);
+		free(n_s);
+		n_s = NULL;
+		i++;
+	}
+}
+
 /**
- * @brief ajoute un node d extraction
+ * @brief ajoute un nod d extraction
  *
  * @param copy_nod
  * @param last_nod
@@ -83,7 +105,6 @@ t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod) //SDU cf struc
 t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod)
 {
 	t_nod	*n;
-	int		j;
 
 	n = malloc(sizeof(t_nod));
 	init_nod(n);

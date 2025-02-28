@@ -5,7 +5,7 @@ t_nod	*parsing(char *c)
 	t_nod	*n;
 
 	n = add_nod(und, ft_strlen(c), c, ft_strlen(c), NULL); //level 0
-	close_node(n);
+	close_nod(n);
 	check_quote(n);
 	sep_quote(n); //level 1
 	sep_ev_ll(n); //level 2

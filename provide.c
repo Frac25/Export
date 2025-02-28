@@ -76,4 +76,4 @@ int	is_ev(t_nod *n)
 	}
 	return (-1);
 }
-// ./export "\"test\"" SDU a faire, KO
+

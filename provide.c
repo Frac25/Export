@@ -1,6 +1,6 @@
 #include "export.h"
 
-int	provide_nbeq(t_nod *n, int nbeq)
+int	prov_al_nbeq(t_nod *n, int nbeq)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -13,14 +13,14 @@ int	provide_nbeq(t_nod *n, int nbeq)
 			nbeq++;
 		n_tmp->d->nbeq = nbeq;
 		if (n_tmp->detail != NULL)
-			provide_nbeq(n_tmp->detail, nbeq);
+			prov_al_nbeq(n_tmp->detail, nbeq);
 		n_tmp = n_tmp->prev;
 		i++;
 	}
 	return (0);
 }
 
-int	provide_level(t_nod *n, int level)
+int	prov_al_level(t_nod *n, int level)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -31,14 +31,15 @@ int	provide_level(t_nod *n, int level)
 	{
 		n_tmp->level = level;
 		if (n_tmp->detail != NULL)
-			provide_level(n_tmp->detail, level + 1);
+			prov_al_level(n_tmp->detail, level + 1);
 		n_tmp = n_tmp->next;
 		i++;
 	}
 	return (0);
 }
 
-int	is_ev_ll(t_nod *n)
+
+int	prov_ll_ev(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -48,9 +49,9 @@ int	is_ev_ll(t_nod *n)
 	while (i < n->nod_size)
 	{
 		if (n_tmp->detail == NULL)
-			is_ev(n_tmp);
+			n_tmp->d->errnum = is_ev(n_tmp);
 		else
-			is_ev_ll(n_tmp->detail);
+			prov_ll_ev(n_tmp->detail);
 		n_tmp = n_tmp->next;
 		i++;
 	}
@@ -61,7 +62,7 @@ int	is_ev(t_nod *n)
 {
 	if (n->d->nbeq > 1)
 	{
-		perror("error : plusieurs '=' ");
+		perror("error : plusieurs '=' "); //SDU
 		exit(EXIT_FAILURE);
 	}
 	if (n->d->nbeq == 0 && is_evn(n->c) == 1)
@@ -77,3 +78,25 @@ int	is_ev(t_nod *n)
 	return (-1);
 }
 
+/*int	prov_ll_errnum(t_nod *n)
+{
+	int		i;
+	t_nod	*n_tmp;
+
+	n_tmp = n;
+	i = 0;
+	while (i < n->nod_size)
+	{
+		if (n_tmp->detail != NULL)
+			prov_ll_errnum(n_tmp->detail);
+		else
+		{
+			if(n_tmp->typ == e_v)
+				n_tmp->d->.. = ..;
+		}
+		n_tmp = n_tmp->next;
+		i++;
+	}
+	return (0);
+}
+*/

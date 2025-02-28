@@ -2,7 +2,7 @@
 
 /**
  * @brief format des noms de variable d environnement :
- *  maj , min, _ et num sauf pour la premiere lettre.
+ *  maj , min, num, _  (exception pour la premiere lettre a tester a part).
  *
  * @param c
  * @return int
@@ -14,8 +14,8 @@ int	is_evn(char *c)
 	int	ok;
 
 	i = 0;
-	if (c[0] >= '0' && c[0] <= '9')
-		return (0);
+//	if (c[0] >= '0' && c[0] <= '9')
+//		return (-1);
 	while (c[i])
 	{
 		ok = 0;
@@ -28,7 +28,7 @@ int	is_evn(char *c)
 		else if (c[i] == '_')
 			ok++;
 		if (ok == 0)
-			return (0);
+			return (-1);
 		i++;
 	}
 	return (1);
@@ -52,7 +52,7 @@ int	is_evn_c(char c)
 		return (1);
 	else if (c == '_')
 		return (1);
-	return (0);
+	return (-1);
 }
 
 /**
@@ -81,7 +81,7 @@ int	is_evv(char *c)
 		else if (c[i] == '_' || c[i] == '.' || c[i] == ',' || c[i] == ':')
 			ok++;
 		if (ok == 0)
-			return (0);
+			return (-1);
 		i++;
 	}
 	return (1);
@@ -95,7 +95,7 @@ int	is_evv(char *c)
  * @return int
  * @result 1 si ok, sinon 0
  */
-int	is_evv_c(char c)
+int	is_evv_c(char c) // non utilisee
 {
 	if (c >= 'A' && c <= 'Z')
 		return (1);
@@ -105,7 +105,7 @@ int	is_evv_c(char c)
 		return (1);
 	else if (c == '_' || c == '.' || c == ',' || c == ':')
 		return (1);
-	return (0);
+	return (-1);
 }
 
 /**
@@ -114,9 +114,9 @@ int	is_evv_c(char c)
  * @param c
  * @return int
  */
-int	ft_isnum(char c)
+int	is_num(char c) //non utilisee
 {
 	if (c >= '0' && c <= '9')
 		return (1);
-	return (0);
+	return (-1);
 }

@@ -4,6 +4,10 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+//# include <errno.h>
+
+# define DQ 34 //doubles quote
+# define SQ 39 //simples quote
 
 typedef enum typ // attention il faut mettre a jour le tableau en cas de modif
 {
@@ -25,8 +29,8 @@ typedef enum typ // attention il faut mettre a jour le tableau en cas de modif
 typedef struct data
 {
 	t_typ	typ2;
-	int		iev;//is_ev
 	int		nbeq;//nb_equal
+	int		errnum;
 }	t_data;
 
 typedef struct nod
@@ -35,6 +39,7 @@ typedef struct nod
 	struct nod	*prev;
 	struct nod	*detail;
 	struct nod	*copy;
+	struct nod	*last;
 	int			nod_size;
 	int			level;
 	int			index;
@@ -45,32 +50,18 @@ typedef struct nod
 
 //export
 int		check_argc(int argc, char **env);
-//int		export(char *arg, char **env);
-char **export(char *arg, char **env);
+char	**export(char *arg, char **env);
+int		insert_exp(char *name,char *value,char **env);
 
 //extract
 t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*is_)(t_nod*));
-t_nod	*extract(t_nod *n, t_nod *n_e);
+t_nod	*extract_if27(t_nod *n, int (*f)(t_nod*));
+//t_nod	*extract(t_nod *n, t_nod *n_e);
 int		if_ev_name(t_nod *n);
 int		if_ev_value(t_nod *n);
 
-//ev
-int		sep_ev_ll(t_nod *n);
-int		sep_ev(t_nod *n);
-int		replace_ev(t_nod *n, char **env);
-int		replace_ev_ll(t_nod *n, char **env);
-
-//format
-t_nod	*parsing(char *c);
-char	*nod_to_txt(t_nod *n, char *c);
-char	*nod_to_txt_e(t_nod *n);
-
 //ft_split
 char	**ft_split(char const *s, char c);
-
-//insert
-char	**ft_strjoin_21(char *s1, char **s2);
-int		arg_exist(char *s1, char **s2);
 
 //lib
 char	*ft_strjoin(char const *s1, char const *s2);
@@ -91,6 +82,12 @@ void	free_nod(t_nod *n);
 int		close_nod(t_nod *n);
 t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod);
 
+//parsing
+t_nod	*parsing(char *c);
+char	*nod_to_txt(t_nod *n, char *c);
+char	*nod_to_txt_e(t_nod *n);
+int		check_quote(t_nod *n, int quote);
+
 //print_nod
 void	print_nod(t_nod *n);
 void	print_nod_l(t_nod *n);
@@ -99,21 +96,37 @@ void	print_nod_d(t_nod *n);
 void	print_nod_e(t_nod *n);
 
 //provide
-int		provide_nbeq(t_nod *n, int nbeq);
-int		provide_level(t_nod *n, int level);
+int		prov_al_nbeq(t_nod *n, int nbeq);
+int		prov_al_level(t_nod *n, int level);
 
-int		is_ev_ll(t_nod *n);
+int		prov_ll_ev(t_nod *n);
 int		is_ev(t_nod *n);
 
-//quote
-int		exit_quote(int i);
-int		check_quote(t_nod *n);
-int		sep_quote(t_nod *n);
+//read
+void	read_ll_error(t_nod *n);
+void	read_error(t_nod *n);
+
+//replace
+int		replace_ev(t_nod *n, char **env);
+int		replace_ev_ll(t_nod *n, char **env);
+
+//separate
+
+int		sep_quote(t_nod *n, t_typ typ, int sep, int i);
+int		sep_char(t_nod *n, t_typ typ, int sep, int i);
+int		sep_level1(t_nod *n);
+int		sep_ev(t_nod *n, t_typ typ, int sep, int i);
+int		sep_ll_level2(t_nod *n);
+int		sep_level2(t_nod *n);
 
 //utils
 int		ft_search_cins(char *s, char c);
 int		ft_nb_char(char *s, char c);
 int		ft_nb_str(char *s, char *c);
+
+//utils2.c
+char	**ft_strjoin_21(char *s1, char **s2);
+int		arg_exist(char *s1, char **s2);
 
 //utils_2
 void	print_2c(char **c);
@@ -127,6 +140,6 @@ int		is_evn(char *c);
 int		is_evn_c(char c);
 int		is_evv(char *c);
 int		is_evv_c(char c);
-int		ft_isnum(char c);
+int		is_num(char c);
 
 #endif

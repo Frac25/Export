@@ -13,7 +13,6 @@ void	init_nod(t_nod *n)
 	n->c = NULL;
 	n->d = malloc(sizeof(t_data));
 	n->d->typ2 = und;
-	n->d->iev = 0;
 	n->d->nbeq = 0;
 }
 
@@ -63,6 +62,7 @@ t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod) //SDU cf struc
 	n->typ = typ;
 	n->next = last_nod;
 	n->c = malloc(sizeof(char) *(l + 1));
+//	printf("l = %d\n", l);
 	n->c[l] = '\0';
 	j = 1;
 	while (j <= l)
@@ -79,13 +79,14 @@ void	free_nod(t_nod *n)
 	t_nod	*n_tmp;
 	t_nod	*n_s;
 
-	n_s = n;
+
 	n_tmp = n;
 	i = 0;
 	while (i < n->nod_size)
 	{
 		if (n_tmp->detail != NULL)
 			free_nod(n_tmp->detail);
+		n_s = n_tmp;
 		n_tmp = n_tmp->next;
 		free(n_s->c);
 		free(n_s->d);

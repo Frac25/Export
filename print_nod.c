@@ -59,7 +59,7 @@ void	print_nod_d2(t_nod *n)
 		i++;
 	}
 	printf(" level = %d   size = %d", n->level, n->nod_size);
-	printf("   nbeq = %d   typ2 = %s   iev = %d", n->d->nbeq, typ[n->d->typ2], n->d->iev);
+	printf("   nbeq = %d   typ2 = %s   err = %d", n->d->nbeq, typ[n->d->typ2], n->d->errnum);
 	printf("\n");
 }
 

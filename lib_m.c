@@ -1,7 +1,7 @@
 #include "export.h"
 
 /**
- * @brief idem strjoin avec fonctionnement meme si s1 ou s2 est NULL
+ * @brief idem strjoin avec fonctionnement meme si s1 ou s2 est NULL et free de s1
  *
  * @param s1
  * @param s2
@@ -30,7 +30,7 @@ char	*ft_strjoin2(char *s1, char *s2)
 	while (i-- > 0)
 		c[i] = s1[i];
 	free(s1);
-	free(s2);
+//	free(s2);
 	return (c);
 }
 

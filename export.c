@@ -12,29 +12,15 @@ int	check_argc(int argc, char **env)
 	return(0) ;
 }
 
-//int TOTO(t_nod n, char **env);
-//{
-//	printf("test");
-//}
-
-
-char **export(char *arg, char **env)
+int	insert_exp(char *name,char *value,char **env)
 {
-	int		i;
-	t_nod	*n;
 	char	*exp;
-	char	*name;
-	char	*value;
+	int	i;
 
-	n = parsing(arg);
-	replace_ev_ll(n,env);
-	name = nod_to_txt_e(extract_if(n, NULL, if_ev_name));
-	value = nod_to_txt_e(extract_if(n, NULL, if_ev_value));
 	if (value == NULL)
 		exp = ft_strjoin(name, "=\'\'");
 	else
 		exp = ft_strjoin3(name, "=", value);
-	printf("exp1 = %s\n", exp);
 	i = arg_exist(name, env);
 	if (i != -1)
 	{
@@ -47,8 +33,39 @@ char **export(char *arg, char **env)
 		printf("arg exist pas \n");
 		env = ft_strjoin_21(exp, env);
 	}
-	print_2c(env); // attention ne modifie pas le pointeur d originne
+	print_2c(env);
 	printf("exp = %s\n\n", exp);
+	free(exp);
+	return(0);
+}
+
+char	**export(char *arg, char **env)
+{
+	t_nod	*n;
+	char	*name;
+	char	*value;
+
+	n = parsing(arg);
+		printf("passe1\n");
+	replace_ev_ll(n,env);//SDU pourquoi pb de definition de la fonction??
+		printf("passe2\n");
+	name = nod_to_txt_e(extract_if(n, NULL, if_ev_name)); //SDU mettre NULL en interne dans n
+//	name = nod_to_txt_e(extract_if27(n, if_ev_name));
+	printf("passe3, name = %s et name[0] = %c\n", name, name[0]);
+	if(is_evn(name) == -1 || is_num(name[0]) == 1)
+	{
+		write(2, "not an identifier\n", 18);
+//		free_nod(n);
+//		free(name);
+		exit(0);// a free SDU
+	}
+	printf("passe4\n");
+	value = nod_to_txt_e(extract_if(n, NULL, if_ev_value));
+	insert_exp(name, value, env); //SDU pourquoi pb de definition de la fonction??
+	printf("passe5\n");
+	free_nod(n);
+	free(name);
+	free(value);
 	return (env);
 }
 
@@ -61,11 +78,9 @@ int	main(int argc, char **argv, char **env)
 	i = 1;
 	while(argv[i])
 	{
-		printf("passe");
 		env = export(argv[i], env);
 		i++;
 	}
-
 	return (0);
 }
 

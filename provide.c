@@ -39,7 +39,7 @@ int	prov_al_level(t_nod *n, int level)
 }
 
 
-int	prov_ll_ev(t_nod *n)
+int	prov_ll_typ2(t_nod *n)
 {
 	int		i;
 	t_nod	*n_tmp;
@@ -49,34 +49,27 @@ int	prov_ll_ev(t_nod *n)
 	while (i < n->nod_size)
 	{
 		if (n_tmp->detail == NULL)
-			n_tmp->d->errnum = is_ev(n_tmp);
+			prov_typ2(n_tmp);
 		else
-			prov_ll_ev(n_tmp->detail);
+			prov_ll_typ2(n_tmp->detail);
 		n_tmp = n_tmp->next;
 		i++;
 	}
 	return (0);
 }
 
-int	is_ev(t_nod *n)
+int	prov_typ2(t_nod *n)
 {
-	if (n->d->nbeq > 1)
-	{
-		perror("error : plusieurs '=' "); //SDU
-		exit(EXIT_FAILURE);
-	}
-	if (n->d->nbeq == 0 && is_evn(n->c) == 1)
-	{
+	if	(n->typ == equ)
+		n->d->typ2 = equ;
+	else if (n->d->nbeq == 0)
 		n->d->typ2 = evn;
-		return (0);
-	}
-	if (n->d->nbeq == 1 && is_evv(n->c) == 1)
-	{
+	else if (n->d->nbeq == 1)
 		n->d->typ2 = evv;
-		return (0);
-	}
-	return (-1);
+	return (0);
 }
+
+
 
 /*int	prov_ll_errnum(t_nod *n)
 {

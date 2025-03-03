@@ -24,8 +24,8 @@ OBJ = $(addprefix obj/, $(addsuffix .o, $(PROG)))
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -g
-#CFLAGS = -g
+#CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -g
 
 obj/:
 			mkdir -p obj

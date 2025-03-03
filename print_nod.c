@@ -7,11 +7,9 @@
  */
 void	print_nod0(t_nod *n)
 {
-	int		i;
 	t_nod	*n_tmp;
 
 	n_tmp = n;
-	i = 0;
 	if (n_tmp)
 		printf("%s\n", n_tmp->c);
 }
@@ -80,7 +78,7 @@ void	print_nod_l(t_nod *n)
 	{
 		print_nod_d2(n_tmp);
 		if (n_tmp->detail != NULL)
-			print_nod_l(n_tmp->detail);
+//			print_nod_l(n_tmp->detail); //pb malloc
 		n_tmp = n_tmp->prev;
 		i++;
 	}

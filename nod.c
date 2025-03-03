@@ -14,6 +14,7 @@ void	init_nod(t_nod *n)
 	n->d = malloc(sizeof(t_data));
 	n->d->typ2 = und;
 	n->d->nbeq = 0;
+	n->d->errnum = 0;
 }
 
 int	close_nod(t_nod *n)
@@ -78,11 +79,12 @@ void	free_nod(t_nod *n)
 	int		i;
 	t_nod	*n_tmp;
 	t_nod	*n_s;
+	int		n_size;
 
-
+	n_size = n->nod_size;
 	n_tmp = n;
 	i = 0;
-	while (i < n->nod_size)
+	while (i < n_size)
 	{
 		if (n_tmp->detail != NULL)
 			free_nod(n_tmp->detail);

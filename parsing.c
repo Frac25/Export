@@ -12,50 +12,10 @@ t_nod	*parsing(char *c)
 	sep_ll_level2(n);
 	prov_al_level(n, 0);
 	prov_al_nbeq(n, 0);
-	prov_ll_ev(n);
-	print_nod_l(n);
+	prov_ll_typ2(n);
+//	print_nod_l(n);
 	read_ll_error(n);
-	printf("passe\n");
 	return (n);
-}
-
-char	*nod_to_txt(t_nod *n, char *c)
-{
-	int		i;
-	t_nod	*n_tmp;
-
-	n_tmp = n->prev;
-	i = 0;
-	while (i < n->nod_size)
-	{
-		if (n_tmp->detail == NULL)
-			c = ft_strjoin2(c, n_tmp->c);
-		else
-			c = nod_to_txt(n_tmp->detail, c);
-		n_tmp = n_tmp->prev;
-		i++;
-	}
-	return (c);
-}
-
-char	*nod_to_txt_e(t_nod *n)
-{
-	int		i;
-	t_nod	*n_tmp;
-	char	*c;
-
-	if (n == NULL)
-		return (NULL);
-	c = NULL;
-	n_tmp = n;
-	i = 0;
-	while (i < n->nod_size)
-	{
-		c = ft_strjoin2(c, n_tmp->copy->c);
-		n_tmp = n_tmp->next;
-		i++;
-	}
-	return (c);
 }
 
 int	check_quote(t_nod *n, int quote)
@@ -83,3 +43,4 @@ int	check_quote(t_nod *n, int quote)
 	}
 	return (0);
 }
+

@@ -1,0 +1,13 @@
+/*
+//TEST :
+//export NOM_txt1'q1q2'txt2$USER"dq1$USERdq2"txt4=VALEUR_txt1'q1.,:q2'txt2$USER"dq1$USER.dq2"txt4
+//./export "NOM_txt1'q1q2'txt2\$USER\"dq1\$USERdq2\"txt4"="VALEUR_txt1'q1.,:q2'txt2\$USER\"dq1\$USER.dq2\"txt4"
+
+//test :        export  NOM_txt1'q1q2'txt2 $USER  "    dq1 $USERdq2 "txt4  = VALEUR_txt1'q1.,:q2'txt2$USER"       dq1 $USER       .dq2 "txt4
+//test sd :   ./export "NOM_txt1'q1q2'txt2\$USER\"     dq1\$USERdq2\"txt4" ="VALEUR_txt1'q1.,:q2'txt2\$USER\"     dq1\$USER       .dq2\"txt4"
+//resultat :    		NOM_txt1 q1q2 txt2sylvainduboisdq1           txt4  = VALEUR_txt1 q1.,:q2 txt2sylvainduboisdq1sylvaindubois.dq2  txt4
+//resultat sd : 		NOM_txt1 q1q2 txt2sylvainduboisdq1           txt4  = VALEUR_txt1 q1.,:q2 txt2sylvainduboisdq1sylvaindubois.dq2  txt4
+
+
+// ./export "\"test\""
+*/

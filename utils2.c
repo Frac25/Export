@@ -23,14 +23,21 @@ int	arg_exist(char *s1, char **s2)
 	return (-1);
 }
 
-char	**ft_strjoin_21(char *s1, char **s2)
+/**
+ * @brief ajoute un char * a la fin d un char**. 
+ * 
+ * @param s1 
+ * @param s2 
+ * @return char** 
+ */
+char	**add_c_to_c2(char *s1, char **s2)
 {
 	char	**c;
 	int		i;
 
 	if (!s1 || !s2)
 		return (NULL);
-	c = malloc(sizeof(char *) * (size_2(s2) + 1));
+	c = malloc(sizeof(char *) * (size_2(s2) + 2));
 	if (c == NULL)
 		return (NULL);
 	i = 0;
@@ -42,5 +49,7 @@ char	**ft_strjoin_21(char *s1, char **s2)
 	c[i] = s1;
 	i++;
 	c[i] = NULL;
-	return (c);
+	free(s2);
+	s2  = c;
+	return (s2);
 }

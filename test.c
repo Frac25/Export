@@ -1,14 +1,6 @@
-#include "export.h"
-
-int	size_2(char **c)
-{
-	int	i;
-
-	i = 0;
-	while (c[i])
-		i++;
-	return (i);
-}
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 void	free_2(char **c)
 {
@@ -23,28 +15,24 @@ void	free_2(char **c)
 	free(c);
 }
 
-char	**ft_strjoin_2(char **s1, char **s2)
+int	size_2(char **c)
 {
-	char	**c;
-	int		i;
-	int		j;
+	int	i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	c = malloc(sizeof(char *) * (size_2(s1) + size_2(s2) + 1));
-	if (c == NULL)
-		return (NULL);
 	i = 0;
-	while (i < size_2(s1))
-	{
-		c[i] = s1[i];
+	while (c[i])
 		i++;
-	}
-	j = 0;
-	while (j < size_2(s2))
-		c[i++] = s2[j++];
-	c[i] = NULL;
-	return (c);
+	return (i);
+}
+
+int	ft_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
 char	**ft_copy_2(char **s1)
@@ -76,7 +64,7 @@ char	**ft_copy_2(char **s1)
 	return (c);
 }
 
-void	print_2c(char **c)
+void	print_2c(char **c) //pb malloc
 {
 	int	i;
 	int	j;
@@ -93,5 +81,18 @@ void	print_2c(char **c)
 		write(1, "\n", 1);
 		i++;
 	}
+//	write(1, c[i], j);
 	write(1, "\n", 1);
 }
+
+int main(int argc, char **argv, char **env)
+{
+    char **env2;
+
+    env2 = ft_copy_2(env);
+    printf("test\n");
+    print_2c(env2);
+    free_2(env2);
+    return(0);
+}
+

@@ -29,7 +29,7 @@ int	sep_char(t_nod *n, t_typ typ, int sep, int i)
 	return(i);
 }
 
-int	sep_level1(t_nod *n) //SDU racourcir et deplacer
+int	sep_level1(t_nod *n)
 {
 	int		i;
 	int		l;
@@ -60,11 +60,11 @@ int	sep_ll_level2(t_nod *n)
 	int		i;
 	t_nod	*n_tmp;
 
-	n_tmp = n;
+	n_tmp = n->prev;
 	i = 0;
 	while (i < n->nod_size)
 	{
-//		printf("c = %s\n", n->c);
+//		printf("c = %s\n", n_tmp->c);
 		if (n_tmp->detail == NULL)
 		{
 //			printf("passe1\n");
@@ -76,7 +76,7 @@ int	sep_ll_level2(t_nod *n)
 //			printf("passe2\n");
 			sep_ll_level2(n_tmp->detail);
 		}
-		n_tmp = n_tmp->next;
+		n_tmp = n_tmp->prev;
 		i++;
 	}
 	return (0);
@@ -93,7 +93,7 @@ int	sep_level2(t_nod *n)
 	{
 		while (n->c[i])
 		{
-			i = sep_ev(n, e_v, '$', i);
+			i = sep_level2_2(n, e_v, '$', i);
 			if(n->c[i] != '$')
 			{
 				l = 0;
@@ -105,14 +105,13 @@ int	sep_level2(t_nod *n)
 				if (l > 0)
 					n->detail = add_nod(txt, l, n->c, i, n->detail);
 			}
-//			i++; //SDU2
 		}
-		close_nod(n->detail);//
+		close_nod(n->detail);
 	}
 	return (0);
 }
 
-int	sep_ev(t_nod *n, t_typ typ, int sep, int i)
+int	sep_level2_2(t_nod *n, t_typ typ, int sep, int i)
 {
 	int	l;
 

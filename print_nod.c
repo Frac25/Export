@@ -26,7 +26,6 @@ void	print_nod(t_nod *n)
 
 	n_tmp = n->prev;
 	i = 0;
-//	printf("n->nod_size = %d\n", n->nod_size);
 	while (i < n->nod_size)
 	{
 		printf("%s\n", n_tmp->c);
@@ -78,23 +77,9 @@ void	print_nod_l(t_nod *n)
 	{
 		print_nod_d2(n_tmp);
 		if (n_tmp->detail != NULL)
-//			print_nod_l(n_tmp->detail); //pb malloc
-		n_tmp = n_tmp->prev;
+			n_tmp = n_tmp->prev;
 		i++;
 	}
-}
-
-/**
- * @brief print le detail du nod
- *
- * @param n
- */
-void	print_nod_d(t_nod *n)
-{
-	printf("\nc = %s\n", n->c);
-	printf("next = %p\n", n->next);
-	printf("detail = %p\n", n->detail);
-	printf("typ = %d\n\n", n->typ);
 }
 
 /**

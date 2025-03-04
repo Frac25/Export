@@ -26,17 +26,17 @@ int	replace_ev(t_nod *n, char **env)
 
 	arg = NULL;
 	i = 0;
-	while(env[i])
+	while (env[i])
 	{
 		arg = ft_split(env[i], '=');
 		if (ft_strcmp2(arg[0], n->c) == 0)
 		{
 			free(n->c);
 			n->c = ft_strdup(arg[1]);
-			free(arg);
-			return(0);
+			free_2(arg);
+			return (0);
 		}
-		free(arg);
+		free_2(arg);
 		i++;
 	}
 	free(n->c);

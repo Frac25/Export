@@ -14,8 +14,8 @@ int	check_free_all(char **s, int size)
 
 void	*ft_malcol(const char *s, char c)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*p;
 
 	i = 0;
@@ -37,7 +37,7 @@ void	*ft_malcol(const char *s, char c)
 
 void	*ft_mallin(const char *s, int end)
 {
-	int	i;
+	int		i;
 	char	*p;
 
 	i = 0;
@@ -56,8 +56,8 @@ void	*ft_mallin(const char *s, int end)
 char	**ft_split(char const *s, char c)
 {
 	char	**tab;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 
 	tab = ft_malcol(s, c);
 	if (tab == NULL)

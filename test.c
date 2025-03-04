@@ -43,8 +43,6 @@ char	**ft_copy_2(char **s1)
 
 	if (!s1)
 		return (NULL);
-//	printf("size_2(s1) = %d\n", size_2(s1));
-//	print_2c(s1);
 	c = malloc(sizeof(char *) * (size_2(s1) + 1));
 	if (c == NULL)
 		return (NULL);
@@ -64,7 +62,7 @@ char	**ft_copy_2(char **s1)
 	return (c);
 }
 
-void	print_2c(char **c) //pb malloc
+void	print_2c(char **c)
 {
 	int	i;
 	int	j;
@@ -81,7 +79,6 @@ void	print_2c(char **c) //pb malloc
 		write(1, "\n", 1);
 		i++;
 	}
-//	write(1, c[i], j);
 	write(1, "\n", 1);
 }
 

@@ -29,7 +29,7 @@ typedef enum typ // attention il faut mettre a jour le tableau en cas de modif
 typedef struct data
 {
 	t_typ	typ2;
-	int		nbeq;//nb_equal
+	int		nbeq;
 	int		errnum;
 }	t_data;
 
@@ -42,7 +42,6 @@ typedef struct nod
 	struct nod	*last;
 	int			nod_size;
 	int			level;
-	int			index;
 	t_typ		typ;
 	char		*c;
 	t_data		*d;
@@ -51,7 +50,7 @@ typedef struct nod
 //export
 int		check_argc(int argc, char **env);
 char	**export(char *arg, char **env);
-char	**insert_exp(char *name,char *value,char **env);
+char	**insert_exp(char *name, char *value, char **env);
 
 //extract
 t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*is_)(t_nod*));
@@ -77,10 +76,12 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 char	*ft_strjoin2(char *s1, char *s2);
 int		ft_strcmp2(const char *s1, const char *s2);
 char	*ft_strjoin3(char const *s1, char const *s2, char const *s3);
+char	*ft_substr_rev(char *s, int i, int l);
 
 //nod
 void	init_nod(t_nod *n);
-t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod);
+//t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod);
+t_nod	*add_nod(t_typ typ, char *c, t_nod *last_nod);
 void	free_nod(t_nod *n);
 int		close_nod(t_nod *n);
 t_nod	*add_nod_e(t_nod *copy_nod, t_nod *last_nod);
@@ -93,7 +94,6 @@ int		check_quote(t_nod *n, int quote);
 void	print_nod(t_nod *n);
 void	print_nod_l(t_nod *n);
 void	print_nod0(t_nod *n);
-void	print_nod_d(t_nod *n);
 void	print_nod_e(t_nod *n);
 
 //provide
@@ -111,14 +111,15 @@ void	read_error(t_nod *n);
 int		replace_ev(t_nod *n, char **env);
 int		replace_ev_ll(t_nod *n, char **env);
 
-//separate
-
+//separate_l1
 int		sep_quote(t_nod *n, t_typ typ, int sep, int i);
 int		sep_char(t_nod *n, t_typ typ, int sep, int i);
 int		sep_level1(t_nod *n);
-int		sep_level2_2(t_nod *n, t_typ typ, int sep, int i);
+
+//separate_l2
 int		sep_ll_level2(t_nod *n);
 int		sep_level2(t_nod *n);
+int		sep_ev(t_nod *n, t_typ typ, int sep, int i);
 
 //utils
 int		ft_search_cins(char *s, char c);

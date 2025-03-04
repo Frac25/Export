@@ -12,8 +12,8 @@ int	ft_strlen(const char *s)
 
 char	*ft_strnstr(const char *str, const char *s, int len)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str1;
 
 	str1 = (char *)str;
@@ -80,7 +80,7 @@ char	*ft_strdup(const char *s1)
 
 int	ft_strncmp(const char *s1, const char *s2, int n)
 {
-	int	i;
+	int				i;
 	unsigned char	*t1;
 	unsigned char	*t2;
 

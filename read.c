@@ -25,18 +25,16 @@ void	read_error(t_nod *n)
 		perror("error : plusieurs '=' "); //SDU
 		exit(EXIT_FAILURE);
 	}
-	if(n->typ == txt && n->d->typ2 == evn && is_evn(n->c) == -1)
+	if (n->typ == txt && n->d->typ2 == evn && is_evn(n->c) == -1)
 	{
 //		free_n0(n);
 		perror("erreur de is_evn");
 		exit(0);
 	}
-	if(n->typ == txt && n->d->typ2 == evv && is_evv(n->c) == -1)
+	if (n->typ == txt && n->d->typ2 == evv && is_evv(n->c) == -1)
 	{
 //		free_n0(n);
 		perror("erreur de is_evv");
 		exit(0);
 	}
-	
-
 }

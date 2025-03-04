@@ -11,7 +11,8 @@ PROG =	export\
 		provide\
 		read\
 		replace\
-		separate\
+		separate_l1\
+		separate_l2\
 		utils_2c\
 		utils_is\
 		utils\

@@ -6,7 +6,7 @@ int	check_argc(int argc, char **env)
 		return (-1);
 	if (argc == 1)
 	{
-		print_2c(env); //SDU verifier le retour?
+		print_2c(env);
 		exit(EXIT_SUCCESS);
 	}
 	return (0);
@@ -25,8 +25,8 @@ char	**insert_exp(char *name, char *value, char **env)
 	if (i != -1)
 	{
 		printf("arg exist\n");
-		free(env[i]); //checker
-		env[i] = exp; //checker
+		free(env[i]);
+		env[i] = exp;
 	}
 	else
 	{

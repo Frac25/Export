@@ -50,6 +50,6 @@ char	**add_c_to_c2(char *s1, char **s2)
 	i++;
 	c[i] = NULL;
 	free(s2);
-	s2  = c;
+	s2 = c;
 	return (s2);
 }

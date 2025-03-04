@@ -1,7 +1,8 @@
 #include "export.h"
 
 /**
- * @brief idem strjoin avec fonctionnement meme si s1 ou s2 est NULL et free de s1
+ * @brief idem strjoin avec fonctionnement 
+ * meme si s1 ou s2 est NULL et free de s1
  *
  * @param s1
  * @param s2
@@ -9,7 +10,7 @@
  */
 char	*ft_strjoin2(char *s1, char *s2)
 {
-	char		*c;
+	char	*c;
 	int		i;
 	int		j;
 
@@ -30,7 +31,6 @@ char	*ft_strjoin2(char *s1, char *s2)
 	while (i-- > 0)
 		c[i] = s1[i];
 	free(s1);
-//	free(s2);
 	return (c);
 }
 
@@ -58,8 +58,8 @@ int	cpy(char *c, char const *s1, int i)
 char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 {
 	char	*c;
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	int		l;
 
 	l = ft_strlen(s1) + ft_strlen(s2) + ft_strlen(s3);
@@ -81,4 +81,31 @@ char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 		return (c);
 	}
 	return (NULL);
+}
+
+/**
+ * @brief 
+ * 
+ * @param s : chaine d originne
+ * @param i : position du (dernier charactere + 1)
+ * @param l : nbr de caractere a extraire
+ * a copier dans la chaine d originne
+ * @return char* 
+ */
+char	*ft_substr_rev(char *s, int i, int l)
+{
+	int		j;
+	char	*c;
+
+	c = malloc(sizeof(char) * (l + 1));
+	if (c == NULL)
+		return (NULL);
+	c[l] = '\0';
+	j = 1;
+	while (j <= l)
+	{
+		c[l - j] = s[i - j];
+		j++;
+	}
+	return (c);
 }

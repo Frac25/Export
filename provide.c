@@ -38,7 +38,6 @@ int	prov_al_level(t_nod *n, int level)
 	return (0);
 }
 
-
 int	prov_ll_typ2(t_nod *n)
 {
 	int		i;
@@ -60,7 +59,7 @@ int	prov_ll_typ2(t_nod *n)
 
 int	prov_typ2(t_nod *n)
 {
-	if	(n->typ == equ)
+	if (n->typ == equ)
 		n->d->typ2 = equ;
 	else if (n->d->nbeq == 0)
 		n->d->typ2 = evn;
@@ -68,8 +67,6 @@ int	prov_typ2(t_nod *n)
 		n->d->typ2 = evv;
 	return (0);
 }
-
-
 
 /*int	prov_ll_errnum(t_nod *n)
 {

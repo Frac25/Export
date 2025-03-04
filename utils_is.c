@@ -14,8 +14,6 @@ int	is_evn(char *c)
 	int	ok;
 
 	i = 0;
-//	if (c[0] >= '0' && c[0] <= '9')
-//		return (-1);
 	while (c[i])
 	{
 		ok = 0;
@@ -87,15 +85,15 @@ int	is_evv(char *c)
 	return (1);
 }
 
-/**
- * @brief format des valeurs des variables d environnement :
- *   maj , min, num, '_' '.' ',' ':'
- *
- * @param c
- * @return int
- * @result 1 si ok, sinon -1
- */
-int	is_evv_c(char c) // non utilisee
+int	is_num(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (-1);
+}
+
+/*
+int	is_evv_c(char c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (1);
@@ -106,32 +104,5 @@ int	is_evv_c(char c) // non utilisee
 	else if (c == '_' || c == '.' || c == ',' || c == ':')
 		return (1);
 	return (-1);
-}
-
-/**
- * @brief revoie 1 si numerique, sinon -1
- *
- * @param c
- * @return int
- */
-int	is_num(char c) //non utilisee
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (-1);
-}
-
-/*
-int	is_ev(t_nod *n)
-{
-	if (n->typ == txt && n->d->nbeq == 0 && is_evn(n->c) == 1)
-	{
-		return (0);
-	}
-	if (n->typ == txt && n->d->nbeq == 1 && is_evv(n->c) == 1) //faux, a supprimer
-	{
-		return (0);
-	}
-	return (0);
 }
 */

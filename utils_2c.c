@@ -55,8 +55,6 @@ char	**ft_copy_2(char **s1)
 
 	if (!s1)
 		return (NULL);
-//	printf("size_2(s1) = %d\n", size_2(s1));
-//	print_2c(s1);
 	c = malloc(sizeof(char *) * (size_2(s1) + 1));
 	if (c == NULL)
 		return (NULL);

@@ -8,7 +8,6 @@ void	init_nod(t_nod *n)
 	n->copy = NULL;
 	n->nod_size = 0;
 	n->level = 0;
-	n->index = 0;
 	n->typ = und;
 	n->c = NULL;
 	n->d = malloc(sizeof(t_data));
@@ -45,32 +44,19 @@ int	close_nod(t_nod *n)
  * @brief crer un nod d'une liste chainee
  *
  * @param typ : type de contenu de la chaine de caractere c
- * @param l : nbr de caractere a extraire
- * @param c : chaine d originne
- * @param i : position du (dernier charactere + 1)
- * a copier dans la chaine d originne
+ * @param c : token a enregistrer
  * @param last_nod : nod precedant, a chainer
  * @return t_nod*
  */
-t_nod	*add_nod(t_typ typ, int l, char *c, int i, t_nod *last_nod) //SDU cf structire des arg, 4 max
+t_nod	*add_nod(t_typ typ, char *c, t_nod *last_nod)
 {
 	t_nod	*n;
-	int		j;
 
 	n = malloc(sizeof(t_nod));
 	init_nod(n);
-	n->index++;//a suppr
 	n->typ = typ;
 	n->next = last_nod;
-	n->c = malloc(sizeof(char) *(l + 1));
-//	printf("l = %d\n", l);
-	n->c[l] = '\0';
-	j = 1;
-	while (j <= l)
-	{
-		n->c[l - j] = c[(i) - j];
-		j++;
-	}
+	n->c = c;
 	return (n);
 }
 

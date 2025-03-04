@@ -36,7 +36,6 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 	n_tmp = n;
 	n_last = n_e;
 	i = 0;
-	//printf("n_tmp->c = %s et n->nod_size = %d\n", n_tmp->c, n->nod_size);
 	while (i < n->nod_size)
 	{
 		if (n_tmp->detail == NULL)
@@ -44,7 +43,6 @@ t_nod	*extract_if(t_nod *n, t_nod *n_e, int (*f)(t_nod*))
 			if (f(n_tmp) == 1)
 			{
 				n_last = add_nod_e(n_tmp, n_last);
-//				printf(" ajout de : n_tmp->c = %s\n", n_tmp->c);
 			}
 		}
 		else
@@ -113,7 +111,6 @@ char	*nod_to_txt_e(t_nod *n)
 	return (n_last);
 }*/
 
-
 /**
  * @brief recherche sur le dernier niveau
  *
@@ -151,7 +148,7 @@ char	*nod_to_txt(t_nod *n, char *c)
 {
 	int		i;
 	t_nod	*n_tmp;
-//printf("node to txt\n\n");
+
 	n_tmp = n->prev;
 	i = 0;
 	while (i < n->nod_size)
